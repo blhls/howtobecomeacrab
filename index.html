@@ -1,0 +1,80 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>howtobecomeacrab.com</title>
+  <link rel="stylesheet" href="/assets/css/os.css" />
+</head>
+<body class="boot">
+  <main class="terminal" role="main">
+    <header class="term-header">
+      <div class="term-title">howtobecomeacrab.com</div>
+    </header>
+
+    <section class="term-body" aria-label="Login terminal">
+      <pre class="ascii portrait" aria-hidden="true">
+         _____
+       .-     -.
+      /  .- -.  \
+     |  /  _  \  |
+     | |  (_)  | |
+     |  \     /  |
+      \  `---'  /
+       `-.___.-'
+      </pre>
+
+      <div class="term-meta">
+        <div>user: <strong>guest</strong></div>
+      </div>
+
+      <div class="term-lines" id="termLines">
+        <div class="line">verifying you're yourself</div>
+        <div class="line">please click on the crab</div>
+      </div>
+
+      <div class="captcha" id="captcha">
+        <a class="captcha-item" href="#" data-choice="goose" aria-label="captcha option 1">
+<pre class="ascii icon" aria-hidden="true">
+  __
+ (o )___
+  ( ._> /
+   `---'
+</pre>
+        </a>
+
+        <a class="captcha-item" href="#" data-choice="goose" aria-label="captcha option 2">
+<pre class="ascii icon" aria-hidden="true">
+  __
+ (o )___
+  ( ._> /
+   `---'
+</pre>
+        </a>
+
+        <a class="captcha-item" href="#" data-choice="goose" aria-label="captcha option 3">
+<pre class="ascii icon" aria-hidden="true">
+  __
+ (o )___
+  ( ._> /
+   `---'
+</pre>
+        </a>
+      </div>
+
+      <div class="term-actions">
+        <button id="loginBtn" class="btn hidden" type="button">login</button>
+      </div>
+    </section>
+
+    <footer class="term-footer">
+      <div class="hint">hint: it won't matter which one you click</div>
+    </footer>
+  </main>
+
+  <script src="/assets/js/login.js"></script>
+</body>
+</html>
