@@ -1,0 +1,56 @@
+<aside class="folders">
+  <div class="toggle" data-folders-toggle>×_</div>
+
+  <div class="group">
+    <div class="group-title">DRAFTS</div>
+    {% for item in site.data.folders.drafts %}
+      <a class="folder-item" href="{{ item.path | replace: '/mail/', site.baseurl | append: '/mail/' | replace: site.baseurl | append: '' }}">
+        <span class="folder-text">› {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="group">
+    <div class="group-title">INBOX</div>
+    {% for item in site.data.folders.inbox %}
+      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+        <span class="folder-text">- {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="group">
+    <div class="group-title">SENT</div>
+    {% for item in site.data.folders.sent %}
+      <a class="folder-item" href="{{ item.path }}">
+        <span class="folder-text">› {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="group">
+    <div class="group-title">JUNK</div>
+    {% for item in site.data.folders.junk %}
+      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+        <span class="folder-text">› {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="group">
+    <div class="group-title">YOUR ACCOUNT</div>
+    {% for item in site.data.folders.account %}
+      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+        <span class="folder-text">› {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="group">
+    {% for item in site.data.folders.logout %}
+      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+        <span class="folder-text">×_ {{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</aside>
