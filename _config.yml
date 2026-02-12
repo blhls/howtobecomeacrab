@@ -1,3 +1,7 @@
-title: How to Become a Crab
-description: notes, fragments, refusals
+title: HOWTOBECOMEACRAB.COM
+description: demiurgic messaging systems and chitin delivery
+baseurl: "/howtobecomeacrab"
+url: "https://blhls.github.io"
+
 theme: minima
+permalink: /:year/:month/:day/:title/
