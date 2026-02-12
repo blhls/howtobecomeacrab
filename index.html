@@ -16,12 +16,12 @@ layout: none
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
     .screen {
-      height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: 32px;
-      box-sizing: border-box;
-    }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  box-sizing: border-box;
+}
     .top { display: grid; gap: 10px; }
     .badge {
       display: inline-block;
@@ -32,22 +32,46 @@ layout: none
     }
     .title { font-size: 44px; line-height: 1.05; }
     .sub { opacity: .8; }
-    .middle {
-      display: grid;
-      place-items: center;
+    
     }
     .gifbox {
+      .center-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+}
+
+.cta {
+  text-decoration: none;
+  color: #0b0b0b;
+  background: #e8e8e8;
+  padding: 12px 18px;
+  display: inline-block;
+  font-weight: 800;
+  border: 2px solid #e8e8e8;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.cta:hover {
+  background: transparent;
+  color: #e8e8e8;
+}
+
+.loginline {
+  opacity: .7;
+  font-size: 13px;
+}
+
       width: 240px; height: 240px;
       border: 1px dashed #e8e8e8;
       display: grid; place-items: center;
       opacity: .9;
     }
-    .bottom {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 16px;
-    }
+    
     .cta {
       text-decoration: none;
       color: #0b0b0b;
@@ -70,16 +94,17 @@ layout: none
       <div class="sub">{{ site.description }}</div>
     </div>
 
-    <div class="middle">
-      <div class="gifbox">
-        GIF SLOT
-      </div>
-    </div>
-
-    <div class="bottom">
-      <div class="sub loginline">→ click to access mailbox</div>
-      <a class="cta" href="{{ site.baseurl }}/mail/">CRABS : CARCINISATION RELATED ALERTS and BERYLISTIC SEARCHES</a>
-    </div>
+  <div class="center-area">
+  <div class="gifbox">
+    GIF SLOT
   </div>
-</body>
-</html>
+
+  <a class="cta" href="{{ site.baseurl }}/mail/">
+    CHECK MY CRABS
+  </a>
+
+  <div class="loginline">
+    → click to access mailbox
+  </div>
+</div>
+
