@@ -18,59 +18,66 @@ layout: none
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
+    /* Fullscreen stage */
     .screen {
+      position: relative;
       height: 100%;
-      display: flex;
-      flex-direction: column;
       padding: 32px;
       box-sizing: border-box;
     }
 
+    /* Top-left header */
     .top {
       display: grid;
       gap: 10px;
+      max-width: 980px;
     }
 
     .badge {
       display: inline-block;
       border: 1px solid #e8e8e8;
-      padding: 8px 12px;
-      font-weight: 700;
+      padding: 10px 14px;
+      font-weight: 800;
       letter-spacing: .5px;
       width: fit-content;
     }
 
-    .title { font-size: 44px; line-height: 1.05; }
-    .sub { opacity: .8; }
+    .title { font-size: 54px; line-height: 1.02; }
+    .sub { opacity: .8; font-size: 18px; }
 
+    /* Centre block (gif + login button) */
     .center-area {
-      flex: 1;
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
+      pointer-events: none; /* so the status link remains clickable if it overlaps */
     }
 
     .gifbox {
-      width: 240px;
-      height: 240px;
-      border: 1px dashed #e8e8e8;
+      width: 260px;
+      height: 260px;
+      border: 1px dashed rgba(232,232,232,.75);
       display: grid;
       place-items: center;
-      opacity: .9;
+      opacity: .95;
+      pointer-events: auto;
     }
 
     .cta {
+      pointer-events: auto;
       text-decoration: none;
       color: #0b0b0b;
       background: #e8e8e8;
       padding: 12px 18px;
       display: inline-block;
-      font-weight: 800;
+      font-weight: 900;
       border: 2px solid #e8e8e8;
       text-transform: uppercase;
-      letter-spacing: .5px;
+      letter-spacing: .6px;
     }
 
     .cta:hover {
@@ -79,8 +86,32 @@ layout: none
     }
 
     .loginline {
+      pointer-events: none;
       opacity: .7;
       font-size: 13px;
+    }
+
+    /* Bottom-right status link */
+    .status {
+      position: absolute;
+      right: 32px;
+      bottom: 32px;
+      pointer-events: auto;
+    }
+
+    .status a {
+      text-decoration: none;
+      color: #e8e8e8;
+      border: 1px solid rgba(232,232,232,.75);
+      padding: 10px 12px;
+      display: inline-block;
+      font-weight: 800;
+      letter-spacing: .2px;
+      background: rgba(0,0,0,.15);
+    }
+
+    .status a:hover {
+      background: rgba(232,232,232,.12);
     }
   </style>
 </head>
@@ -96,10 +127,14 @@ layout: none
 
     <div class="center-area">
       <div class="gifbox">GIF SLOT</div>
-
       <a class="cta" href="{{ site.baseurl }}/mail/">CHECK MY CRABS</a>
-
       <div class="loginline">→ click to access mailbox</div>
+    </div>
+
+    <div class="status">
+      <a href="{{ site.baseurl }}/mail/">
+        CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES
+      </a>
     </div>
   </div>
 </body>
