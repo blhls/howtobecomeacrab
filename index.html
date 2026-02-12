@@ -8,83 +8,83 @@ layout: none
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ site.title }}</title>
+
   <style>
     html, body { height: 100%; margin: 0; }
+
     body {
       background: #0b0b0b;
       color: #e8e8e8;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
+
     .screen {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 32px;
-  box-sizing: border-box;
-}
-    .top { display: grid; gap: 10px; }
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      box-sizing: border-box;
+    }
+
+    .top {
+      display: grid;
+      gap: 10px;
+    }
+
     .badge {
       display: inline-block;
       border: 1px solid #e8e8e8;
       padding: 8px 12px;
       font-weight: 700;
       letter-spacing: .5px;
+      width: fit-content;
     }
+
     .title { font-size: 44px; line-height: 1.05; }
     .sub { opacity: .8; }
-    
+
+    .center-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
     }
+
     .gifbox {
-
-      width: 240px; height: 240px;
+      width: 240px;
+      height: 240px;
       border: 1px dashed #e8e8e8;
-      display: grid; place-items: center;
+      display: grid;
+      place-items: center;
       opacity: .9;
-
-        .center-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 22px;
-}
-
-.cta {
-  text-decoration: none;
-  color: #0b0b0b;
-  background: #e8e8e8;
-  padding: 12px 18px;
-  display: inline-block;
-  font-weight: 800;
-  border: 2px solid #e8e8e8;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-
-.cta:hover {
-  background: transparent;
-  color: #e8e8e8;
-}
-
-.loginline {
-  opacity: .7;
-  font-size: 13px;
     }
-    
+
     .cta {
       text-decoration: none;
       color: #0b0b0b;
       background: #e8e8e8;
-      padding: 12px 14px;
+      padding: 12px 18px;
       display: inline-block;
       font-weight: 800;
       border: 2px solid #e8e8e8;
+      text-transform: uppercase;
+      letter-spacing: .5px;
     }
-    .cta:hover { background: transparent; color: #e8e8e8; }
-    .loginline { margin-top: 8px; }
+
+    .cta:hover {
+      background: transparent;
+      color: #e8e8e8;
+    }
+
+    .loginline {
+      opacity: .7;
+      font-size: 13px;
+    }
   </style>
 </head>
+
 <body>
   <div class="screen">
     <div class="top">
@@ -94,17 +94,13 @@ layout: none
       <div class="sub">{{ site.description }}</div>
     </div>
 
-  <div class="center-area">
-  <div class="gifbox">
-    GIF SLOT
+    <div class="center-area">
+      <div class="gifbox">GIF SLOT</div>
+
+      <a class="cta" href="{{ site.baseurl }}/mail/">CHECK MY CRABS</a>
+
+      <div class="loginline">→ click to access mailbox</div>
+    </div>
   </div>
-
-  <a class="cta" href="{{ site.baseurl }}/mail/">
-    CHECK MY CRABS
-  </a>
-
-  <div class="loginline">
-    → click to access mailbox
-  </div>
-</div>
-
+</body>
+</html>
