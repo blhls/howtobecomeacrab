@@ -1,0 +1,62 @@
+drafts:
+  - key: crabs
+    label: crabs
+    path: /mail/
+  - key: birt
+    label: birt
+    path: /mail/birt/
+
+inbox:
+  - key: unread
+    label: unread (1)
+    path: /mail/unread/
+  - key: capitalism
+    label: "from:capitalism"
+    path: /mail/from/capitalism/
+  - key: patriarchy
+    label: "from:patriarchy"
+    path: /mail/from/patriarchy/
+  - key: imperialism
+    label: "from:imperialism"
+    path: /mail/from/imperialism/
+  - key: france
+    label: france
+    path: /mail/from/france/
+  - key: notes
+    label: notes to self
+    path: /mail/from/notes/
+
+sent:
+  - key: berylism
+    label: berylism.org
+    path: https://berylism.org
+
+junk:
+  - key: bouillabaisse
+    label: Bouillabaisse
+    path: /mail/junk/bouillabaisse/
+  - key: legal
+    label: Legal notice
+    path: /mail/junk/legal-notice/
+  - key: ethics
+    label: Editorial ethics charter
+    path: /mail/junk/editorial-ethics-charter/
+  - key: terms
+    label: Terms and conditions
+    path: /mail/junk/terms/
+  - key: privacy
+    label: Privacy
+    path: /mail/junk/privacy/
+  - key: cookies
+    label: Cookie settings
+    path: /mail/junk/cookies/
+
+account:
+  - key: account
+    label: YOUR ACCOUNT
+    path: /mail/account/
+
+logout:
+  - key: logout
+    label: LOG OUT
+    path: /
