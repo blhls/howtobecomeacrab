@@ -1,0 +1,86 @@
+---
+layout: none
+permalink: /
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ site.title }}</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: #0b0b0b;
+      color: #e8e8e8;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    .screen {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 32px;
+      box-sizing: border-box;
+    }
+    .top { display: grid; gap: 10px; }
+    .badge {
+      display: inline-block;
+      border: 1px solid #e8e8e8;
+      padding: 8px 12px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    .title { font-size: 44px; line-height: 1.05; }
+    .sub { opacity: .8; }
+    .middle {
+      display: grid;
+      place-items: center;
+    }
+    .gifbox {
+      width: 240px; height: 240px;
+      border: 1px dashed #e8e8e8;
+      display: grid; place-items: center;
+      opacity: .9;
+    }
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 16px;
+    }
+    .cta {
+      text-decoration: none;
+      color: #0b0b0b;
+      background: #e8e8e8;
+      padding: 12px 14px;
+      display: inline-block;
+      font-weight: 800;
+      border: 2px solid #e8e8e8;
+    }
+    .cta:hover { background: transparent; color: #e8e8e8; }
+    .loginline { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="top">
+      <div class="badge">[/!\ YOU’VE GOT 99+ CRABS /!\]</div>
+      <div class="title">LOGIN :</div>
+      <div class="title">{{ site.title }}</div>
+      <div class="sub">{{ site.description }}</div>
+    </div>
+
+    <div class="middle">
+      <div class="gifbox">
+        GIF SLOT
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="sub loginline">→ click to access mailbox</div>
+      <a class="cta" href="{{ site.baseurl }}/mail/">CRABS : CARCINISATION RELATED ALERTS and BERYLISTIC SEARCHES</a>
+    </div>
+  </div>
+</body>
+</html>
