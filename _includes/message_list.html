@@ -38,6 +38,7 @@
         <div class="subj">{{ post.subject | default: post.title }}</div>
         <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
       </a>
+    </a>
     {% endfor %}
   {% endif %}
 {% endif %}
