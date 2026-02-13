@@ -190,15 +190,25 @@
     </aside>
 
     <main class="view">
+     {% if page.show_close != false %}
+  <div class="email-header">
+    <div class="hdr-left">
       {% if page.email_view %}
-        <div class="email-header">
-          <div><strong>from :</strong> {{ page.from | default: "UNKNOWN" }}</div>
-          <div><strong>to :</strong> YOU</div>
-          <div><strong>date :</strong> {{ page.date | date: "%d/%m/%Y" }}</div>
-          <div><strong>subject :</strong> {{ page.subject | default: page.title }}</div>
-          <div><strong>cc :</strong> {{ page.cc | default: "BLHLS" }}</div>
-        </div>
+        <div><strong>from :</strong> {{ page.from | default: "UNKNOWN" }}</div>
+        <div><strong>to :</strong> YOU</div>
+        <div><strong>date :</strong> {{ page.date | date: "%d/%m/%Y" }}</div>
+        <div><strong>subject :</strong> {{ page.subject | default: page.title }}</div>
+        <div><strong>cc :</strong> {{ page.cc | default: "BLHLS" }}</div>
+      {% else %}
+        <div class="contact-title">{{ page.title }}</div>
+        <div class="contact-sub">contact / profile</div>
       {% endif %}
+    </div>
+
+    <a class="closebtn" href="{{ site.baseurl }}{{ page.close_to | default: '/mail/blank/' }}">✕</a>
+  </div>
+{% endif %}
+
 
       <div class="email-body">
         {{ content }}
