@@ -32,24 +32,12 @@ sent:
     path: https://berylism.org
 
 junk:
+  - key: about
+    label: about
+    path: /mail/junk/about/
   - key: bouillabaisse
     label: Bouillabaisse
     path: /mail/junk/bouillabaisse/
-  - key: legal
-    label: Legal notice
-    path: /mail/junk/legal-notice/
-  - key: ethics
-    label: Editorial ethics charter
-    path: /mail/junk/editorial-ethics-charter/
-  - key: terms
-    label: Terms and conditions
-    path: /mail/junk/terms/
-  - key: privacy
-    label: Privacy
-    path: /mail/junk/privacy/
-  - key: cookies
-    label: Cookie settings
-    path: /mail/junk/cookies/
 
 account:
   - key: profile
