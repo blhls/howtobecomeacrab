@@ -12,46 +12,45 @@
       --folders-w-mini: 64px;
       --list-w: 360px;
 
-      /* palette (violet + crab, blue only as contrast) */
+      /* warm night palette (no indigo) */
+      --bg0: #060406;   /* near-black, warm */
+      --bg1: #0b060b;   /* deep violet-black */
+      --bg2: #12060e;   /* burgundy-violet */
+      --bg3: #1a0718;   /* warmer violet */
       --violet: #3a1b5a;
-      --crab:   #c2462d;
+      --crab: #c2462d;
 
-      --bg0: #07070b;
-      --bg1: #0e0a14;
-      --bg2: #120b18;
-      --paper: #e9e6f2;
+      --text: rgba(255,245,242,.92);   /* warm off-white */
+      --muted: rgba(255,245,242,.68);
 
-      --text: rgba(233,230,242,.92);
-      --muted: rgba(233,230,242,.70);
-
-      --border: rgba(233,230,242,.12);
-      --border2: rgba(233,230,242,.08);
+      --border: rgba(255,245,242,.14);
+      --border2: rgba(255,245,242,.08);
       --shadow: rgba(0,0,0,.55);
     }
 
     html, body { height: 100%; margin: 0; }
 
+    /* SAFE LATIN UI STACK FIRST (prevents CJK fallback weirdness) */
     body{
-      font-family: Chicago, Geneva, "Charcoal", Monaco, "MS Sans Serif", Tahoma, Verdana, sans-serif;
-      -webkit-font-smoothing: none;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeSpeed;
-
+      font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(1100px 760px at 38% 18%, rgba(58,27,90,.42), transparent 62%),
+        radial-gradient(1100px 760px at 36% 18%, rgba(58,27,90,.40), transparent 62%),
         radial-gradient(900px 700px at 74% 58%, rgba(194,70,45,.18), transparent 66%),
-        var(--bg0);
+        linear-gradient(180deg, var(--bg0), #040204);
       color: var(--text);
     }
 
-    /* active message highlight */
-    .msg.active{
-      background: rgba(194,70,45,.22);
-      outline: 1px solid rgba(194,70,45,.35);
-      box-shadow: 0 0 0 2px rgba(58,27,90,.18) inset;
+    /* app grid */
+    body.folders-mini { --folders-w: var(--folders-w-mini); }
+
+    .app{
+      height: calc(100vh - var(--topbar-h));
+      display: grid;
+      grid-template-columns: var(--folders-w) var(--list-w) 1fr;
+      min-height: 0;
     }
 
-    /* top scrolling banner */
+    /* ===== top “departure board” marquee ===== */
     .topbar{
       position: sticky;
       top: 0;
@@ -59,12 +58,10 @@
       border-bottom: 1px solid var(--border);
       overflow: hidden;
       z-index: 50;
-
-      /* departure-board chrome (no indigo) */
       background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.35)),
-        linear-gradient(180deg, #190f22, #0e0a14);
-      box-shadow: 0 2px 0 rgba(255,255,255,.06) inset;
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.38)),
+        linear-gradient(180deg, var(--bg3), var(--bg1));
+      box-shadow: 0 2px 0 rgba(255,255,255,.05) inset;
     }
 
     .marquee{
@@ -86,18 +83,17 @@
       display: inline-block;
       white-space: nowrap;
 
-      /* departure-board / pixel-ish */
-      font-family: Chicago, Geneva, Monaco, "MS Sans Serif", Tahoma, sans-serif;
+      /* “board” feel */
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
       font-weight: 900;
       font-size: 12px;
       letter-spacing: 1.6px;
       text-transform: uppercase;
 
-      /* warm off-white + crab glow */
       color: rgba(255,245,242,.92);
       text-shadow:
         0 1px 0 rgba(0,0,0,.9),
-        0 0 10px rgba(194,70,45,.20);
+        0 0 10px rgba(194,70,45,.22);
     }
 
     @keyframes marquee{
@@ -105,46 +101,38 @@
       to   { transform: translateX(-50%); }
     }
 
-    /* app grid */
-    body.folders-mini { --folders-w: var(--folders-w-mini); }
-
-    .app{
-      height: calc(100vh - var(--topbar-h));
-      display: grid;
-      grid-template-columns: var(--folders-w) var(--list-w) 1fr;
-      min-height: 0;
-    }
-
-    /* folders */
+    /* ===== folders (left) ===== */
     .folders{
-      background: linear-gradient(180deg, #1a0f22, var(--bg1));
+      background:
+        linear-gradient(180deg, var(--bg3), var(--bg1));
       border-right: 1px solid var(--border);
       padding: 12px;
       box-sizing: border-box;
       overflow: auto;
-      box-shadow: -1px 0 0 rgba(255,255,255,.05) inset;
+      box-shadow: -1px 0 0 rgba(255,255,255,.04) inset;
     }
 
     .toggle{
       display: inline-block;
       padding: 6px 8px;
-      border: 1px solid rgba(233,230,242,.18);
-      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,245,242,.18);
+      background: rgba(0,0,0,.22);
       cursor: pointer;
       user-select: none;
       margin-bottom: 10px;
       border-radius: 6px;
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
       color: var(--text);
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
     .group{ margin: 12px 0; }
 
     .group-title{
-      font-weight: 900;
+      font-weight: 800;
       font-size: 11px;
       letter-spacing: 1.1px;
-      opacity: .8;
+      opacity: .82;
       margin: 8px 0 6px;
       color: var(--muted);
       text-transform: uppercase;
@@ -160,35 +148,37 @@
     }
 
     .folder-item:hover{
-      background: rgba(233,230,242,.06);
-      border-color: rgba(233,230,242,.10);
+      background: rgba(255,245,242,.06);
+      border-color: rgba(255,245,242,.10);
     }
 
     .folder-item .folder-text{
-      text-shadow: 0 1px 0 rgba(0,0,0,.6);
+      text-shadow: 0 1px 0 rgba(0,0,0,.65);
     }
 
-    /* mini view (collapsed folders) */
+    /* mini (collapsed) */
     .mini{ display: none; gap: 10px; align-items: center; }
 
     .mini .hamburger{
       display: inline-block;
       padding: 6px 8px;
-      border: 1px solid rgba(233,230,242,.18);
-      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,245,242,.18);
+      background: rgba(0,0,0,.22);
       cursor: pointer;
       user-select: none;
       width: fit-content;
       border-radius: 6px;
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
       color: var(--text);
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
     .mini .letters{
       font-weight: 900;
       letter-spacing: .6px;
       line-height: 1.05;
-      opacity: .9;
+      opacity: .92;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
     .mini .letters span{ display: block; }
 
@@ -197,9 +187,10 @@
     body.folders-mini .mini{ display: grid; }
     body.folders-mini .folders{ padding: 12px 8px; }
 
-    /* message list */
+    /* ===== middle list ===== */
     .list{
-      background: linear-gradient(180deg, var(--bg2), #0a0810);
+      background:
+        linear-gradient(180deg, var(--bg2), #070308);
       border-right: 1px solid var(--border);
       overflow: auto;
       min-height: 0;
@@ -208,18 +199,18 @@
     .list-header{
       padding: 12px;
       border-bottom: 1px solid var(--border);
-      font-weight: 900;
+      font-weight: 800;
       font-size: 11px;
       letter-spacing: 1.1px;
       text-transform: uppercase;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(0,0,0,.18)),
-        linear-gradient(180deg, #190f22, #0e0a14);
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.30)),
+        linear-gradient(180deg, var(--bg3), var(--bg1));
       position: sticky;
       top: 0;
       z-index: 5;
       color: rgba(255,245,242,.92);
-      text-shadow: 0 1px 0 rgba(0,0,0,.8);
+      text-shadow: 0 1px 0 rgba(0,0,0,.85);
     }
 
     .msg{
@@ -233,7 +224,7 @@
     }
 
     .msg:hover{
-      background: rgba(58,27,90,.18);
+      background: rgba(58,27,90,.16);
     }
 
     .msg .meta{
@@ -242,16 +233,22 @@
     }
 
     .msg .subj{
-      font-weight: 900;
+      font-weight: 800;
       color: var(--text);
     }
 
-    /* reading pane */
+    .msg.active{
+      background: rgba(194,70,45,.20);
+      outline: 1px solid rgba(194,70,45,.32);
+      box-shadow: 0 0 0 2px rgba(58,27,90,.16) inset;
+    }
+
+    /* ===== reading pane (right) ===== */
     .view{
       background:
         radial-gradient(900px 700px at 30% 10%, rgba(194,70,45,.10), transparent 60%),
-        radial-gradient(900px 700px at 70% 40%, rgba(58,27,90,.16), transparent 65%),
-        linear-gradient(180deg, #09070d, #05050a);
+        radial-gradient(900px 700px at 72% 40%, rgba(58,27,90,.18), transparent 65%),
+        linear-gradient(180deg, #070408, #040206);
       overflow: auto;
       min-height: 0;
     }
@@ -265,15 +262,21 @@
       padding: 12px 16px;
       font-size: 13px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(0,0,0,.20)),
-        linear-gradient(180deg, #190f22, #0e0a14);
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.32)),
+        linear-gradient(180deg, var(--bg3), var(--bg1));
       position: sticky;
       top: 0;
       z-index: 5;
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
     }
 
     .hdr-left{ display: grid; gap: 2px; }
+
+    /* force sane Latin glyphs in header area */
+    .email-header, .email-header *{
+      font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    }
+
     .contact-title{ font-weight: 900; letter-spacing: .4px; text-transform: lowercase; }
     .contact-sub{ color: var(--muted); font-size: 12px; margin-top: 2px; }
 
@@ -285,16 +288,17 @@
       height: 30px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(233,230,242,.16);
-      background: rgba(0,0,0,.25);
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+      border: 1px solid rgba(255,245,242,.16);
+      background: rgba(0,0,0,.22);
+      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
       border-radius: 6px;
       flex: 0 0 auto;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
     .closebtn:hover{
-      border-color: rgba(194,70,45,.65);
-      box-shadow: 0 0 0 2px rgba(194,70,45,.22);
+      border-color: rgba(194,70,45,.60);
+      box-shadow: 0 0 0 2px rgba(194,70,45,.18);
     }
 
     .email-body{
@@ -306,11 +310,11 @@
     }
 
     .email-body h1, .email-body h2, .email-body h3{
-      color: var(--paper);
+      color: rgba(255,245,242,.95);
       text-shadow: 0 1px 0 rgba(0,0,0,.6);
     }
 
-    /* blue only as contrast */
+    /* blue ONLY as contrast */
     .email-body a{ color: #7aa2ff; }
     .email-body a:hover{ color: #ffd2c7; }
 
@@ -345,12 +349,24 @@
   <div class="topbar">
     <div class="marquee" aria-hidden="true">
       <div class="track">
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+         <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+         <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span
       </div>
     </div>
   </div>
