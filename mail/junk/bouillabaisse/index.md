@@ -3,7 +3,9 @@ layout: mail
 permalink: /mail/junk/bouillabaisse/
 title: Bouillabaisse
 close_to: /mail/blank/
+mailbox: junk
 list_title: JUNK
+
 ---
 
 # Bouillabaisse à la crabe
