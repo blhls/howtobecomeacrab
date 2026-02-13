@@ -4,6 +4,7 @@ permalink: /mail/from/capitalism/
 title: from:capitalism
 section: capitalism
 list_title: from:capitalism
+close_to: /mail/blank/
 ---
 
 # capitalis𝗺
