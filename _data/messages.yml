@@ -4,9 +4,32 @@ drafts:
     to: YOU
     date: 13/02/2026
     url: /mail/drafts/crabs/
-
   - subject: birt
     from: drafts
     to: YOU
     date: 13/02/2026
     url: /mail/drafts/birt/
+
+junk:
+  - subject: about
+    from: junk
+    to: YOU
+    date: 13/02/2026
+    url: /mail/junk/about/
+  - subject: Bouillabaisse
+    from: junk
+    to: YOU
+    date: 13/02/2026
+    url: /mail/junk/bouillabaisse/
+
+account:
+  - subject: _profile
+    from: system
+    to: YOU
+    date: 13/02/2026
+    url: /mail/account/
+  - subject: _moult (LOG OUT)
+    from: system
+    to: YOU
+    date: 13/02/2026
+    url: /
