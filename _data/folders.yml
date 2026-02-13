@@ -1,14 +1,14 @@
 drafts:
   - key: crabs
     label: crabs
-    path: /mail/
+    path: /mail/drafts/crabs/
   - key: birt
     label: birt
-    path: /mail/birt/
+    path: /mail/drafts/birt/
 
 inbox:
   - key: unread
-    label: unread 🚩
+    label: unread
     path: /mail/unread/
   - key: capitalism
     label: "from:capitalism"
