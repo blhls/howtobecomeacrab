@@ -10,3 +10,5 @@ list_title: inbox (newest first)
 
 # birt
 speshal birt
+
+close_to: /mail/blank/
