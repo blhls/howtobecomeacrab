@@ -52,11 +52,9 @@ junk:
     path: /mail/junk/cookies/
 
 account:
-  - key: account
-    label: YOUR ACCOUNT
+  - key: profile
+    label: _profile
     path: /mail/account/
-
-logout:
-  - key: logout
-    label: 🚺 LOG OUT
+  - key: moult
+    label: _moult (LOG OUT)
     path: /
