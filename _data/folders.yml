@@ -20,11 +20,11 @@ inbox:
     label: "from:imperialism"
     path: /mail/from/imperialism/
   - key: france
-    label: france
+    label:  🇫🇷 france
     path: /mail/from/france/
   - key: notes
     label: notes to self
-    path: /mail/from/notes/
+    path: /mail/from/notestoself/
 
 sent:
   - key: berylism
@@ -58,5 +58,5 @@ account:
 
 logout:
   - key: logout
-    label: LOG OUT
+    label: 🚺 LOG OUT
     path: /
