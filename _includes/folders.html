@@ -13,7 +13,11 @@
   <div class="group">
     <div class="group-title">DRAFTS</div>
     {% for item in site.data.folders.drafts %}
-      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+      {% assign is_active = false %}
+      {% if page.url contains item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a class="folder-item{% if is_active %} active{% endif %}" href="{{ site.baseurl }}{{ item.path }}">
         <span class="folder-text">› {{ item.label }}</span>
       </a>
     {% endfor %}
@@ -22,7 +26,11 @@
   <div class="group">
     <div class="group-title">INBOX</div>
     {% for item in site.data.folders.inbox %}
-      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+      {% assign is_active = false %}
+      {% if page.url contains item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a class="folder-item{% if is_active %} active{% endif %}" href="{{ site.baseurl }}{{ item.path }}">
         <span class="folder-text">- {{ item.label }}</span>
       </a>
     {% endfor %}
@@ -31,7 +39,11 @@
   <div class="group">
     <div class="group-title">SENT</div>
     {% for item in site.data.folders.sent %}
-      <a class="folder-item sentbox" href="{{ item.path }}">
+      {% assign is_active = false %}
+      {% if page.url contains item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a class="folder-item sentbox{% if is_active %} active{% endif %}" href="{{ item.path }}">
         <span class="folder-text">› {{ item.label }}</span>
       </a>
     {% endfor %}
@@ -40,7 +52,11 @@
   <div class="group">
     <div class="group-title">JUNK</div>
     {% for item in site.data.folders.junk %}
-      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+      {% assign is_active = false %}
+      {% if page.url contains item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a class="folder-item{% if is_active %} active{% endif %}" href="{{ site.baseurl }}{{ item.path }}">
         <span class="folder-text">› {{ item.label }}</span>
       </a>
     {% endfor %}
@@ -49,7 +65,11 @@
   <div class="group">
     <div class="group-title">YOUR ACCOUNT</div>
     {% for item in site.data.folders.account %}
-      <a class="folder-item" href="{{ site.baseurl }}{{ item.path }}">
+      {% assign is_active = false %}
+      {% if page.url contains item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a class="folder-item{% if is_active %} active{% endif %}" href="{{ site.baseurl }}{{ item.path }}">
         <span class="folder-text">› {{ item.label }}</span>
       </a>
     {% endfor %}
