@@ -13,11 +13,23 @@
       color: #111;
     }
 
-    .app {
-      height: 100%;
-      display: grid;
-      grid-template-columns: 260px 360px 1fr;
-    }
+    :root {
+  --topbar-h: 34px;
+  --folders-w: 260px;
+  --folders-w-mini: 64px;
+  --list-w: 360px;
+}
+
+body.folders-mini { --folders-w: var(--folders-w-mini); }
+
+.app {
+  height: calc(100% - var(--topbar-h));
+  margin-top: var(--topbar-h);
+  display: grid;
+  grid-template-columns: var(--folders-w) var(--list-w) 1fr;
+}
+
+
 
     /* x_ bar (folders) */
     .folders {
@@ -27,8 +39,44 @@
       box-sizing: border-box;
       overflow: auto;
     }
-    .folders.retracted { width: 56px; padding: 12px 8px; }
-    .folders.retracted .folder-text { display: none; }
+    .folders { padding: 12px; box-sizing: border-box; overflow: auto; }
+body.folders-mini .folders { padding: 12px 8px; }
+
+body.folders-mini .folders .group,
+body.folders-mini .folders .folder-item,
+body.folders-mini .folders .group-title {
+  display: none;
+}
+
+.mini {
+  display: none;
+  gap: 10px;
+  align-items: center;
+}
+
+body.folders-mini .mini {
+  display: grid;
+}
+
+.mini .hamburger {
+  display: inline-block;
+  padding: 6px 8px;
+  border: 1px solid #8f8f8f;
+  background: #f6f6f6;
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.mini .letters {
+  font-weight: 800;
+  letter-spacing: .5px;
+  line-height: 1.05;
+  opacity: .85;
+}
+
+.mini .letters span { display: block; }
+
     .folders .toggle {
       display: inline-block;
       padding: 6px 8px;
@@ -124,17 +172,16 @@
     </main>
   </div>
 
-  <script>
-    // retractable x_ bar
-    (function () {
-      const folders = document.querySelector('.folders');
-      const btn = document.querySelector('[data-folders-toggle]');
-      if (!folders || !btn) return;
+<script>
+  (function () {
+    const btn = document.querySelector('[data-folders-toggle]');
+    if (!btn) return;
 
-      btn.addEventListener('click', () => {
-        folders.classList.toggle('retracted');
-      });
-    })();
-  </script>
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('folders-mini');
+    });
+  })();
+</script>
+
 </body>
 </html>
