@@ -5,6 +5,7 @@ title: crabs
 mailbox: drafts
 section: all
 list_title: inbox (newest first)
+close_to: /mail/blank/
 ---
 
 
@@ -12,4 +13,3 @@ list_title: inbox (newest first)
 
 Landing page / manifesto / presentation goes here.
 
-close_to: /mail/blank/
