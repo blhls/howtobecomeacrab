@@ -10,7 +10,7 @@ list_title: inbox (newest first)
 
 This is the landing page / manifesto / presentation.
 
-- user : maja  
+- user : you  
 - howtobecomeacrab.com  
 - messaging systems and chitin delivery  
 - part of the BIA group  
