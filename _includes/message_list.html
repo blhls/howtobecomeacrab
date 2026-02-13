@@ -1,21 +1,29 @@
+{% assign mailbox = page.mailbox | default: "" %}
 {% assign section = page.section | default: "all" %}
+
 <div class="list-header">
   {% if page.list_title %}{{ page.list_title }}{% else %}messages{% endif %}
 </div>
 
-{% comment %}
-We show posts filtered by a category stored in front matter: section
-{% endcomment %}
-
-{% if section == "all" %}
-  {% assign posts = site.posts %}
+{% if mailbox == "drafts" %}
+  {% assign msgs = site.data.messages.drafts %}
+  {% for m in msgs %}
+    <a class="msg" href="{{ site.baseurl }}{{ m.url }}">
+      <div class="subj">{{ m.subject }}</div>
+      <div class="meta">from: {{ m.from }} · to: {{ m.to }} · {{ m.date }}</div>
+    </a>
+  {% endfor %}
 {% else %}
-  {% assign posts = site.posts | where: "section", section %}
-{% endif %}
+  {% if section == "all" %}
+    {% assign posts = site.posts %}
+  {% else %}
+    {% assign posts = site.posts | where: "section", section %}
+  {% endif %}
 
-{% for post in posts %}
-  <a class="msg" href="{{ site.baseurl }}{{ post.url }}">
-    <div class="subj">{{ post.subject | default: post.title }}</div>
-    <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
-  </a>
-{% endfor %}
+  {% for post in posts %}
+    <a class="msg" href="{{ site.baseurl }}{{ post.url }}">
+      <div class="subj">{{ post.subject | default: post.title }}</div>
+      <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
+    </a>
+  {% endfor %}
+{% endif %}
