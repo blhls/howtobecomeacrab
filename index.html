@@ -110,6 +110,13 @@ layout: none
 }
 2,.12);
     }
+    .gifbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
   </style>
 </head>
 
@@ -122,7 +129,10 @@ layout: none
     </div>
 
     <div class="center-area">
-      <div class="gifbox">GIF SLOT</div>
+      <div class="gifbox">
+  <img src="{{ site.baseurl }}/assets/session.gif" alt="session" />
+</div>
+
       <div class="badge">/!\ YOU’VE GOT CRABS* /!\</div>
       <a class="cta" href="{{ site.baseurl }}/mail/">CHECK MY CRABS</a>
       <div class="loginline">click to access mailbox</div>
