@@ -3,7 +3,8 @@ layout: mail
 permalink: /mail/account/
 title: _profile
 section: all
-list_title: messages
+mailbox: account
+list_title: YOUR ACCOUNT
 close_to: /mail/blank/
 ---
 
