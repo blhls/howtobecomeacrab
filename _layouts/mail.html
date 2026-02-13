@@ -29,7 +29,33 @@
       --text:   #e9e6f2;
       --muted:  rgba(233,230,242,.72);
       --shadow: rgba(0,0,0,.55);
+
+      
     }
+
+    .sentbox{
+  margin-top: 6px;
+  padding: 12px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 190, 210, .35);
+  background: radial-gradient(700px 220px at 30% 20%, rgba(255, 190, 210, .22), transparent 60%),
+              linear-gradient(180deg, rgba(255, 190, 210, .16), rgba(58,27,90,.18));
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: .3px;
+  font-weight: 700;
+}
+
+.sentbox:hover{
+  border-color: rgba(255, 190, 210, .65);
+  box-shadow: 0 0 0 2px rgba(255, 190, 210, .18), 0 14px 40px rgba(0,0,0,.45);
+}
+
+.sentbox .folder-text{
+  text-shadow: none;
+  font-size: 14px;
+}
+
 
     html, body { height: 100%; margin: 0; }
 
