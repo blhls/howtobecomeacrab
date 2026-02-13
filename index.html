@@ -99,19 +99,16 @@ layout: none
       pointer-events: auto;
     }
 
-    .status a {
-      text-decoration: none;
-      color: #e8e8e8;
-      border: 1px solid rgba(232,232,232,.75);
-      padding: 10px 12px;
-      display: inline-block;
-      font-weight: 800;
-      letter-spacing: .2px;
-      background: rgba(0,0,0,.15);
-    }
-
-    .status a:hover {
-      background: rgba(232,232,232,.12);
+    ..status span {
+  color: #e8e8e8;
+  border: 1px solid rgba(232,232,232,.75);
+  padding: 10px 12px;
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: .2px;
+  background: rgba(0,0,0,.15);
+}
+2,.12);
     }
   </style>
 </head>
@@ -132,8 +129,10 @@ layout: none
     </div>
 
     <div class="status">
-      <a href="{{ site.baseurl }}/mail/">
-        CRABS* : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES
+  <span>
+    CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES
+  </span>
+</div>
       </a>
     </div>
   </div>
