@@ -8,7 +8,7 @@ drafts:
 
 inbox:
   - key: unread
-    label: unread (1)
+    label: unread 🚩
     path: /mail/unread/
   - key: capitalism
     label: "from:capitalism"
@@ -20,7 +20,7 @@ inbox:
     label: "from:imperialism"
     path: /mail/from/imperialism/
   - key: france
-    label:  🇫🇷 france
+    label: france 🇫🇷
     path: /mail/from/france/
   - key: notes
     label: notes to self
