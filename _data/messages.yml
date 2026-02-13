@@ -1,14 +1,12 @@
 drafts:
-  - title: crabs
-    subject: crabs
+  - subject: crabs
     from: drafts
     to: YOU
-    date: 2026-02-13
+    date: 13/02/2026
     url: /mail/drafts/crabs/
 
-  - title: birt
-    subject: birt
+  - subject: birt
     from: drafts
     to: YOU
-    date: 2026-02-13
+    date: 13/02/2026
     url: /mail/drafts/birt/
