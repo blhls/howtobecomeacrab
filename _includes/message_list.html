@@ -6,13 +6,20 @@
 </div>
 
 {% if mailbox == "drafts" %}
-  {% assign msgs = site.data.messages.drafts %}
-  {% for m in msgs %}
-    <a class="msg" href="{{ site.baseurl }}{{ m.url }}">
-      <div class="subj">{{ m.subject }}</div>
-      <div class="meta">from: {{ m.from }} · to: {{ m.to }} · {{ m.date }}</div>
-    </a>
-  {% endfor %}
+  {% assign msgs = site.data.messages.drafts | default: empty %}
+  {% if msgs == empty %}
+    <div class="msg">
+      <div class="subj">no drafts</div>
+      <div class="meta">add drafts in _data/messages.yml</div>
+    </div>
+  {% else %}
+    {% for m in msgs %}
+      <a class="msg" href="{{ site.baseurl }}{{ m.url }}">
+        <div class="subj">{{ m.subject }}</div>
+        <div class="meta">from: {{ m.from }} · to: {{ m.to }} · {{ m.date }}</div>
+      </a>
+    {% endfor %}
+  {% endif %}
 {% else %}
   {% if section == "all" %}
     {% assign posts = site.posts %}
@@ -20,10 +27,17 @@
     {% assign posts = site.posts | where: "section", section %}
   {% endif %}
 
-  {% for post in posts %}
-    <a class="msg" href="{{ site.baseurl }}{{ post.url }}">
-      <div class="subj">{{ post.subject | default: post.title }}</div>
-      <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
-    </a>
-  {% endfor %}
+  {% if posts == empty %}
+    <div class="msg">
+      <div class="subj">no messages in this folder</div>
+      <div class="meta">create a post with section: {{ section }}</div>
+    </div>
+  {% else %}
+    {% for post in posts %}
+      <a class="msg" href="{{ site.baseurl }}{{ post.url }}">
+        <div class="subj">{{ post.subject | default: post.title }}</div>
+        <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
+      </a>
+    {% endfor %}
+  {% endif %}
 {% endif %}
