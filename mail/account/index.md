@@ -4,6 +4,7 @@ permalink: /mail/account/
 title: _profile
 section: all
 list_title: messages
+close_to: /mail/blank/
 ---
 
 # _profile
