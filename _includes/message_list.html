@@ -1,20 +1,27 @@
 {% assign mailbox = page.mailbox | default: "" %}
 {% assign section = page.section | default: "all" %}
+{% assign current = page.url %}
 
 <div class="list-header">
   {% if page.list_title %}{{ page.list_title }}{% else %}messages{% endif %}
 </div>
 
-{% if mailbox == "drafts" %}
-  {% assign msgs = site.data.messages.drafts | default: empty %}
+{% if mailbox == "drafts" or mailbox == "junk" or mailbox == "account" %}
+  {% assign msgs = site.data.messages[mailbox] | default: empty %}
   {% if msgs == empty %}
     <div class="msg">
-      <div class="subj">no drafts</div>
-      <div class="meta">add drafts in _data/messages.yml</div>
+      <div class="subj">empty</div>
+      <div class="meta">no items defined</div>
     </div>
   {% else %}
     {% for m in msgs %}
-      <a class="msg" href="{{ site.baseurl }}{{ m.url }}">
+      {% assign target = m.url %}
+      {% assign active = "" %}
+      {% if target == current %}
+        {% assign active = " active" %}
+      {% endif %}
+
+      <a class="msg{{ active }}" href="{% if mailbox == 'account' and m.url == '/' %}{{ site.baseurl }}/{% else %}{{ site.baseurl }}{{ m.url }}{% endif %}">
         <div class="subj">{{ m.subject }}</div>
         <div class="meta">from: {{ m.from }} · to: {{ m.to }} · {{ m.date }}</div>
       </a>
@@ -34,11 +41,15 @@
     </div>
   {% else %}
     {% for post in posts %}
-      <a class="msg" href="{{ site.baseurl }}{{ post.url }}">
+      {% assign active = "" %}
+      {% if post.url == current %}
+        {% assign active = " active" %}
+      {% endif %}
+
+      <a class="msg{{ active }}" href="{{ site.baseurl }}{{ post.url }}">
         <div class="subj">{{ post.subject | default: post.title }}</div>
         <div class="meta">from: {{ post.from | default: post.section | default: "UNKNOWN" }} · to: YOU · {{ post.date | date: "%d/%m/%Y" }}</div>
       </a>
-    </a>
     {% endfor %}
   {% endif %}
 {% endif %}
