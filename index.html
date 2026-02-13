@@ -10,141 +10,161 @@ layout: none
   <title>{{ site.title }}</title>
 
   <style>
-    html, body { height: 100%; margin: 0; }
+    :root{
+      --duck: #5aa7b7;
+      --duck2:#3f8f9f;
 
-    body {
-      background: #0b0b0b;
-      color: #e8e8e8;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --crab: #f0a25f;     /* light crab orange */
+      --paper:#f2b275;    /* optional highlight */
+      --burg: #1a0610;    /* velvet burgundy */
+
+      --shadow: rgba(0,0,0,.45);
     }
 
-    /* Fullscreen stage */
-    .screen {
-      position: relative;
+    html, body { height: 100%; margin: 0; }
+
+    body{
+      background:
+        radial-gradient(900px 700px at 30% 25%, rgba(255,255,255,.10), transparent 60%),
+        radial-gradient(900px 700px at 70% 60%, rgba(26,6,16,.22), transparent 68%),
+        linear-gradient(180deg, var(--duck), var(--duck2));
+      font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+      color: var(--burg);
+    }
+
+    .screen{
       height: 100%;
-      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
       box-sizing: border-box;
     }
 
-    /* Top-left header */
-    .top {
-      display: grid;
-      gap: 10px;
-      max-width: 980px;
-    }
-
-    .badge {
+    .badge{
       display: inline-block;
-      border: 1px solid #e8e8e8;
+      border: 2px solid rgba(26,6,16,.35);
+      background: rgba(255,255,255,.10);
       padding: 10px 14px;
-      font-weight: 800;
-      letter-spacing: .5px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--burg);
+      box-shadow: 0 6px 20px var(--shadow);
       width: fit-content;
     }
 
-    .title { font-size: 54px; line-height: 1.02; }
-    .sub { opacity: .8; font-size: 18px; }
+    .title{
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.02;
+      margin-top: 18px;
+      color: var(--burg);
+      text-shadow: 0 1px 0 rgba(255,255,255,.15);
+    }
 
-    /* Centre block (gif + login button) */
-    .center-area {
-      position: absolute;
-      inset: 0;
+    .sub{
+      margin-top: 10px;
+      font-size: 14px;
+      letter-spacing: .8px;
+      text-transform: lowercase;
+      color: rgba(26,6,16,.82);
+      max-width: 680px;
+    }
+
+    .center-area{
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 18px;
-      pointer-events: none; /* so the status link remains clickable if it overlaps */
     }
 
-    .gifbox {
+    .gifbox{
       width: 260px;
       height: 260px;
-      border: 1px dashed rgba(232,232,232,.75);
+      border-radius: 14px;
+      border: 2px dashed rgba(26,6,16,.45);
+      background: rgba(255,255,255,.10);
       display: grid;
       place-items: center;
-      opacity: .95;
-      pointer-events: auto;
+      color: rgba(26,6,16,.75);
+      box-shadow: 0 10px 30px var(--shadow);
+      overflow: hidden;
     }
 
-    .cta {
-      pointer-events: auto;
+    .gifbox img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cta{
       text-decoration: none;
-      color: #0b0b0b;
-      background: #e8e8e8;
+      background: var(--crab);
+      color: var(--burg);
+      border: 2px solid rgba(26,6,16,.35);
       padding: 12px 18px;
-      display: inline-block;
       font-weight: 900;
-      border: 2px solid #e8e8e8;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      letter-spacing: .6px;
+      border-radius: 10px;
+      box-shadow: 0 10px 26px var(--shadow);
     }
 
-    .cta:hover {
-      background: transparent;
-      color: #e8e8e8;
+    .cta:hover{
+      filter: brightness(1.04);
+      transform: translateY(-1px);
     }
 
-    .loginline {
-      pointer-events: none;
-      opacity: .7;
+    .loginline{
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
       font-size: 13px;
+      opacity: .85;
+      color: rgba(26,6,16,.85);
     }
 
-    /* Bottom-right status link */
-    .status {
-      position: absolute;
-      right: 32px;
-      bottom: 32px;
-      pointer-events: auto;
-    }
+    .corner{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
 
-    ..status span {
-  color: #e8e8e8;
-  border: 1px solid rgba(232,232,232,.75);
-  padding: 10px 12px;
-  display: inline-block;
-  font-weight: 800;
-  letter-spacing: .2px;
-  background: rgba(0,0,0,.15);
-}
-2,.12);
+      background: rgba(242,178,117,.88);
+      color: var(--burg);
+      border: 2px solid rgba(26,6,16,.35);
+      padding: 10px 12px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px var(--shadow);
+      user-select: none;
     }
-    .gifbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: object-fit: contain;
-  display: block;
-}
-
   </style>
 </head>
 
 <body>
   <div class="screen">
-    <div class="top">
-      <div class="title">LOGIN :</div>
-      <div class="title">{{ site.title }}</div>
-      <div class="sub">{{ site.description }}</div>
-    </div>
+    <div class="badge">[/!\ YOU’VE GOT 99+ CRABS /!\]</div>
+
+    <div class="title">LOGIN :</div>
+    <div class="title">{{ site.title }}</div>
+    <div class="sub">{{ site.description }}</div>
 
     <div class="center-area">
       <div class="gifbox">
-  <img src="{{ site.baseurl }}/assets/session.gif" alt="session" />
-</div>
+        <!-- if you have a gif at /assets/session.gif, it will show -->
+        <img src="{{ site.baseurl }}/assets/session.gif" alt="session gif" onerror="this.remove(); this.parentElement.textContent='GIF SLOT';" />
+      </div>
 
-      <div class="badge">/!\ YOU’VE GOT *CRABS /!\</div>
       <a class="cta" href="{{ site.baseurl }}/mail/drafts/crabs/">CHECK MY CRABS</a>
-      <div class="loginline">click to access mailbox</div>
+
+      <div class="loginline">→ click to access mailbox</div>
     </div>
 
-    <div class="status">
-  <span>
-    *CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES
-  </span>
-</div>
-      </a>
-    </div>
+    <div class="corner">CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES</div>
   </div>
 </body>
 </html>
