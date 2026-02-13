@@ -157,6 +157,13 @@
       text-shadow: 0 1px 0 rgba(0,0,0,.65);
     }
 
+    .folder-item.active{
+  background: rgba(240,162,95,.16);
+  border-color: rgba(240,162,95,.55);
+  box-shadow: 0 0 0 2px rgba(240,162,95,.10) inset;
+}
+
+
     /* mini collapsed */
     .mini{ display: none; gap: 10px; align-items: center; }
 
@@ -191,11 +198,15 @@
 
     /* ===== Middle list ===== */
     .list{
-      background: linear-gradient(180deg, #200714, #14030c);
-      border-right: 1px solid var(--border);
-      overflow: auto;
-      min-height: 0;
-    }
+  background:
+    radial-gradient(900px 700px at 40% 20%, rgba(90,167,183,.20), transparent 60%),
+    linear-gradient(180deg, rgba(90,167,183,.22), rgba(26,6,16,.06)),
+    linear-gradient(180deg, #2a0a19, #16040d);
+  border-right: 1px solid var(--border);
+  overflow: auto;
+  min-height: 0;
+}
+
 
     .list-header{
       padding: 12px;
@@ -253,9 +264,10 @@
       border-bottom: 1px solid var(--border);
       padding: 12px 16px;
       font-size: 13px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
-        linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
+     background:
+  linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
+  linear-gradient(90deg, rgba(90,167,183,.35), rgba(90,167,183,.10)),
+  linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
       position: sticky;
       top: 0;
       z-index: 5;
@@ -336,6 +348,8 @@
     }
 
     .sentbox .folder-text{ text-shadow: none; font-size: 14px; }
+
+    
   </style>
 </head>
 
