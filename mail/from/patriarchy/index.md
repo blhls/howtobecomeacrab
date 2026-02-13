@@ -1,6 +1,6 @@
 ---
 layout: mail
-permalink: /mail/from/capitalism/
+permalink: /mail/from/patriarchy/
 title: from:patriarchy
 section: patriarchy
 list_title: from:patriarchy
