@@ -3,6 +3,7 @@ layout: mail
 permalink: /mail/junk/about/
 title: about
 close_to: /mail/blank/
+mailbox: junk
 list_title: JUNK
 ---
 
