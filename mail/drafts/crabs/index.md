@@ -11,3 +11,5 @@ list_title: inbox (newest first)
 # crabs
 
 Landing page / manifesto / presentation goes here.
+
+close_to: /mail/blank/
