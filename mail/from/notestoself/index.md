@@ -5,7 +5,7 @@ title: "first email"
 subject: "first email"
 close_to: /mail/blank/
 date: 2026-02-12
-section: notes to self
+section: notestoself
 from: you
 cc: BLHLS
 ---
