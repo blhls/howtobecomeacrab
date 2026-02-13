@@ -28,14 +28,15 @@
     {% endfor %}
   </div>
 
-  <div class="group">
-    <div class="group-title">SENT</div>
-    {% for item in site.data.folders.sent %}
-      <a class="folder-item" href="{{ item.path }}">
-        <span class="folder-text">› {{ item.label }}</span>
-      </a>
-    {% endfor %}
-  </div>
+ <div class="group">
+  <div class="group-title">SENT</div>
+  {% for item in site.data.folders.sent %}
+    <a class="folder-item sentbox" href="{{ item.path }}">
+      <span class="folder-text">› {{ item.label }}</span>
+    </a>
+  {% endfor %}
+</div>
+
 
   <div class="group">
     <div class="group-title">JUNK</div>
