@@ -4,6 +4,7 @@ permalink: /mail/from/france/
 title: from:france
 section: france
 list_title: from:france
+close_to: /mail/from/france/
 ---
 
 # france
