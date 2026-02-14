@@ -41,8 +41,8 @@ junk:
 
 account:
   - key: profile
-    label: _profile
+    label: profile
     path: /mail/account/
   - key: moult
-    label: _moult (LOG OUT)
+    label: moult (LOG OUT)
     path: /
