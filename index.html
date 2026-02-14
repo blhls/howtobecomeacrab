@@ -1,31 +1,24 @@
----
-layout: none
----
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ site.title }}</title>
+  <title>HOWTOBECOMEACRAB.COM</title>
 
   <style>
     :root{
       --duck: #5aa7b7;
       --duck2:#3f8f9f;
 
-      --crab: #f0a25f;         /* crab orange (fill) */
-      --crab-dark: #d98947;    /* crab orange (stroke) */
-      --paper:#f2b275;         /* optional highlight */
-      --burg: #1a0610;         /* velvet burgundy */
-
+      --crab: #f0a25f;         /* fill */
+      --crab-dark: #d98947;    /* stroke */
+      --burg: #1a0610;
       --shadow: rgba(0,0,0,.45);
     }
 
     html, body { height: 100%; margin: 0; }
 
     body{
-      /* colour blocks (no gradients / no radial glow) */
       background:
         linear-gradient(180deg, rgba(255,255,255,.08) 0 220px, transparent 220px),
         linear-gradient(90deg,
@@ -56,11 +49,6 @@ layout: none
       color: var(--burg);
       box-shadow: 0 6px 20px var(--shadow);
       width: fit-content;
-
-      /* tiny crab echo */
-      text-shadow:
-        1px 0 0 rgba(240,162,95,.25),
-       -1px 0 0 rgba(240,162,95,.25);
     }
 
     .title{
@@ -69,12 +57,10 @@ layout: none
       line-height: 1.02;
       margin-top: 18px;
 
-      /* crab fill + thicker stroke */
       color: var(--crab);
       -webkit-text-stroke: 4px var(--crab-dark);
       paint-order: stroke fill;
 
-      /* fallback + depth */
       text-shadow:
         0 10px 18px rgba(26,6,16,.22),
         2px 0 0 var(--crab-dark),
@@ -109,7 +95,6 @@ layout: none
       background: rgba(255,255,255,.10);
       display: grid;
       place-items: center;
-      color: rgba(26,6,16,.75);
       box-shadow: 0 10px 30px var(--shadow);
       overflow: hidden;
     }
@@ -134,10 +119,7 @@ layout: none
       box-shadow: 0 10px 26px var(--shadow);
     }
 
-    .cta:hover{
-      filter: brightness(1.04);
-      transform: translateY(-1px);
-    }
+    .cta:hover{ filter: brightness(1.04); transform: translateY(-1px); }
 
     .loginline{
       font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
@@ -155,7 +137,7 @@ layout: none
       letter-spacing: 1px;
       text-transform: uppercase;
 
-      background: rgba(242,178,117,.88);
+      background: rgba(240,162,95,.88);
       color: var(--burg);
       border: 2px solid rgba(26,6,16,.35);
       padding: 10px 12px;
@@ -171,16 +153,16 @@ layout: none
     <div class="badge">[/!\ YOU’VE GOT 99+ CRABS /!\]</div>
 
     <div class="title">LOGIN :</div>
-    <div class="title">{{ site.title }}</div>
-    <div class="sub">{{ site.description }}</div>
+    <div class="title">HOWTOBECOMEACRAB.COM</div>
+    <div class="sub">demiurgic messaging systems and chitin delivery</div>
 
     <div class="center-area">
       <div class="gifbox">
-        <!-- if you have a gif at /assets/session.gif, it will show -->
-        <img src="{{ site.baseurl }}/assets/session.gif" alt="session gif" onerror="this.remove(); this.parentElement.textContent='GIF SLOT';" />
+        <img src="./assets/session.gif" alt="session gif"
+             onerror="this.remove(); this.parentElement.textContent='GIF SLOT';" />
       </div>
 
-      <a class="cta" href="{{ site.baseurl }}/mail/drafts/crabs/">CHECK MY CRABS</a>
+      <a class="cta" href="./mail/drafts/crabs/">CHECK MY CRABS</a>
 
       <div class="loginline">→ click to access mailbox</div>
     </div>
