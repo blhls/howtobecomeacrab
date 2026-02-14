@@ -12,35 +12,33 @@
       --folders-w-mini: 64px;
       --list-w: 360px;
 
-      --burgundy-0: #1a0610;
-      --burgundy-1: #240816;
-      --burgundy-2: #2f0a1d;
+      /* COLOURS (flat blocks) */
+      --burgundy:  #1a0610;  /* main background */
+      --burgundy2: #240816;  /* folders panel */
+      --burgundy3: #2f0a1d;  /* headers chrome */
 
-      --crab-ui:    #f0a25f;
-      --crab-paper: #f2b275;
-      --ink:        #2b0719;
+      --duck:      #5aa7b7;  /* duck blue */
+      --duck2:     #3f8f9f;  /* darker duck */
 
-      --muted:      rgba(240,162,95,.78);
-      --muted2:     rgba(240,162,95,.62);
-      --border:     rgba(240,162,95,.22);
-      --border2:    rgba(240,162,95,.14);
-      --shadow:     rgba(0,0,0,.55);
+      --crab:      #f0a25f;  /* interface text / borders */
+      --crab2:     #d88a49;  /* darker crab for emphasis */
+      --paper:     #f2b275;  /* email background (article) */
+      --ink:       #2b0719;  /* burgundy text on paper */
+
+      --border:    rgba(240,162,95,.28);
+      --border2:   rgba(240,162,95,.18);
+      --shadow:    rgba(0,0,0,.45);
+
+      --link:      #3f8f9f;
+      --linkHover: #5aa7b7;
     }
 
     html, body { height: 100%; margin: 0; }
 
     body{
       font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-      color: var(--crab-ui);
-
-      /* hard colour blocks */
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06) 0 180px, transparent 180px),
-        linear-gradient(90deg,
-          var(--burgundy-0) 0 32%,
-          var(--burgundy-1) 32% 70%,
-          #12030b 70% 100%
-        );
+      background: var(--burgundy);
+      color: var(--crab);
     }
 
     body.folders-mini { --folders-w: var(--folders-w-mini); }
@@ -52,16 +50,15 @@
       min-height: 0;
     }
 
+    /* ===== Top banner (flat) ===== */
     .topbar{
       position: sticky;
       top: 0;
       height: var(--topbar-h);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
       overflow: hidden;
       z-index: 50;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
-        linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
+      background: var(--burgundy3);
       box-shadow: 0 2px 0 rgba(255,255,255,.05) inset;
     }
 
@@ -88,7 +85,7 @@
       font-size: 12px;
       letter-spacing: 1.7px;
       text-transform: uppercase;
-      color: var(--crab-ui);
+      color: var(--crab);
       text-shadow: 0 1px 0 rgba(0,0,0,.85);
     }
 
@@ -97,171 +94,289 @@
       to   { transform: translateX(-50%); }
     }
 
+    /* ===== Left folders (flat) ===== */
     .folders{
-      background: linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
-      border-right: 1px solid var(--border);
+      background: var(--burgundy2);
+      border-right: 2px solid var(--border);
       padding: 12px;
       box-sizing: border-box;
       overflow: auto;
-      box-shadow: -1px 0 0 rgba(255,255,255,.04) inset;
     }
 
-    .list{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),
-        linear-gradient(180deg, #2c0a1b, #12030b);
-      border-right: 1px solid var(--border);
-      padding: 12px;
-      box-sizing: border-box;
-      overflow: auto;
-      min-height: 0;
+    .toggle{
+      display: inline-block;
+      padding: 6px 8px;
+      border: 2px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      color: var(--crab);
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
-    .view{
-      padding: 14px;
-      box-sizing: border-box;
-      overflow: auto;
-      min-height: 0;
-    }
+    .group{ margin: 12px 0; }
 
-    .panel{
-      background: rgba(0,0,0,.16);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 14px 40px var(--shadow);
-      position: relative;
-    }
-
-    .meta{
-      display: grid;
-      gap: 6px;
-      padding: 10px 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(0,0,0,.16);
-      margin-bottom: 12px;
-    }
-
-    .meta .row{
-      display: flex;
-      gap: 10px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      color: var(--muted);
+    .group-title{
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 1.1px;
+      margin: 8px 0 6px;
+      color: rgba(240,162,95,.78);
       text-transform: uppercase;
     }
 
-    .meta .row b{
-      color: var(--crab-ui);
-      letter-spacing: 1.4px;
-      min-width: 64px;
+    .folder-item{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+    }
+
+    .folder-item:hover{
+      background: rgba(90,167,183,.12);
+      border-color: rgba(90,167,183,.45);
+    }
+
+    /* active supersection highlight (crab) */
+    .folder-item.active{
+      background: rgba(240,162,95,.12);
+      border-color: rgba(240,162,95,.70);
+      box-shadow: 0 0 0 2px rgba(240,162,95,.10) inset;
+    }
+
+    /* mini collapsed */
+    .mini{ display: none; gap: 10px; align-items: center; }
+
+    .mini .hamburger{
       display: inline-block;
+      padding: 6px 8px;
+      border: 2px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+      border-radius: 6px;
+      color: var(--crab);
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
-    .paper{
-      background: var(--crab-paper);
-      color: var(--ink);
-      border-radius: 16px;
-      padding: 18px 18px 22px;
-      border: 2px solid rgba(26,6,16,.25);
-      box-shadow: 0 18px 50px rgba(0,0,0,.40);
+    .mini .letters{
+      font-weight: 900;
+      letter-spacing: .6px;
+      line-height: 1.05;
+      color: var(--crab);
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
+      opacity: .95;
+    }
+    .mini .letters span{ display: block; }
+
+    body.folders-mini .toggle,
+    body.folders-mini .group{ display: none; }
+    body.folders-mini .mini{ display: grid; }
+    body.folders-mini .folders{ padding: 12px 8px; }
+
+    /* ===== Middle list (MORE duck blue) ===== */
+    .list{
+      background: var(--duck2);
+      border-right: 2px solid rgba(26,6,16,.45);
+      overflow: auto;
+      min-height: 0;
+      color: rgba(26,6,16,.92);
     }
 
-    .close-x{
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      border-radius: 10px;
-      width: 34px;
-      height: 34px;
+    .list-header{
+      padding: 12px;
+      border-bottom: 2px solid rgba(26,6,16,.35);
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      background: var(--duck);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      color: rgba(26,6,16,.92);
+      text-shadow: none;
+    }
+
+    .msg{
+      display: grid;
+      gap: 2px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(26,6,16,.25);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .msg:hover{
+      background: rgba(255,255,255,.12);
+    }
+
+    .msg .meta{
+      font-size: 12px;
+      color: rgba(26,6,16,.70);
+    }
+
+    .msg .subj{
+      font-weight: 900;
+      color: rgba(26,6,16,.92);
+    }
+
+    .msg.active{
+      background: rgba(240,162,95,.42);
+      outline: 2px solid rgba(240,162,95,.75);
+    }
+
+    /* ===== Right reading pane (flat burgundy) ===== */
+    .view{
+      background: var(--burgundy);
+      overflow: auto;
+      min-height: 0;
+    }
+
+    /* header of selected email: duck */
+    .email-header{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 2px solid rgba(26,6,16,.45);
+      padding: 12px 16px;
+      font-size: 13px;
+      background: var(--duck);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      color: rgba(26,6,16,.92);
+    }
+
+    .hdr-left{ display: grid; gap: 2px; }
+
+    .email-header strong{
+      color: rgba(26,6,16,.92);
+      font-weight: 900;
+    }
+
+    .closebtn{
+      text-decoration: none;
+      color: rgba(26,6,16,.92);
+      font-weight: 900;
+      width: 30px;
+      height: 30px;
       display: grid;
       place-items: center;
-      background: rgba(0,0,0,.18);
-      border: 1px solid var(--border);
-      color: var(--crab-ui);
-      text-decoration: none;
-      font-weight: 900;
-      box-shadow: 0 10px 24px var(--shadow);
+      border: 2px solid rgba(26,6,16,.45);
+      background: rgba(255,255,255,.12);
+      border-radius: 6px;
+      flex: 0 0 auto;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
     }
 
-    @media (max-width: 860px){
-      .app{ grid-template-columns: var(--folders-w) 1fr; }
-      .list{ display: none; }
+    .closebtn:hover{
+      background: rgba(255,255,255,.18);
+      outline: 2px solid rgba(240,162,95,.65);
     }
-    @media (max-width: 620px){
-      :root{ --folders-w: var(--folders-w-mini); }
+
+    /* EMAIL BODY: crab paper + burgundy text */
+    .email-body{
+      padding: 18px 18px 48px;
+      max-width: 920px;
+      line-height: 1.55;
+      font-size: 16px;
+
+      background: var(--paper);
+      color: var(--ink);
+      margin: 16px;
+      border-radius: 12px;
+      border: 2px solid rgba(43,7,25,.22);
+      box-shadow: 0 10px 30px rgba(0,0,0,.20);
+    }
+
+    .email-body h1, .email-body h2, .email-body h3{
+      color: var(--ink);
+    }
+
+    .email-body a{ color: var(--link); }
+    .email-body a:hover{ color: var(--linkHover); }
+
+    /* SENT special box stays */
+    .sentbox{
+      margin-top: 6px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 190, 210, .35);
+      background: rgba(255,190,210,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: .3px;
+      font-weight: 700;
+      color: var(--crab);
+    }
+
+    .sentbox:hover{
+      outline: 2px solid rgba(90,167,183,.45);
     }
   </style>
-
-  <script>
-    function toggleFolders(){
-      document.body.classList.toggle("folders-mini");
-    }
-    function closePane(){
-      history.back();
-    }
-    // Wire up any toggle buttons present in the folders include
-    document.addEventListener("DOMContentLoaded", function(){
-      document.querySelectorAll("[data-folders-toggle]").forEach(function(el){
-        el.addEventListener("click", toggleFolders);
-      });
-    });
-  </script>
 </head>
 
 <body>
   <div class="topbar">
     <div class="marquee" aria-hidden="true">
       <div class="track">
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-      </div>
-      <div class="track" aria-hidden="true">
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
       </div>
     </div>
   </div>
 
   <div class="app">
-    <aside class="folders">
-      {% include folders.html %}
-    </aside>
+    {% include folders.html %}
 
     <aside class="list">
       {% include message_list.html %}
     </aside>
 
     <main class="view">
-      <div class="panel">
-        {% if page.show_close != false %}
-          <a class="close-x" href="javascript:closePane()" aria-label="Close">✕</a>
-        {% endif %}
-
-        {% if page.email_view %}
-          <div class="meta">
-            <div class="row"><b>from :</b> <span>{{ page.from | default: "UNKNOWN" }}</span></div>
-            <div class="row"><b>to :</b> <span>YOU</span></div>
-            <div class="row"><b>date :</b> <span>{{ page.date | date: "%d/%m/%Y" }}</span></div>
-            <div class="row"><b>subject :</b> <span>{{ page.subject | default: page.title }}</span></div>
-            <div class="row"><b>cc :</b> <span>{{ page.cc | default: "BLHLS" }}</span></div>
+      {% if page.show_close != false %}
+        <div class="email-header">
+          <div class="hdr-left">
+            {% if page.email_view %}
+              <div><strong>from :</strong> {{ page.from | default: "UNKNOWN" }}</div>
+              <div><strong>to :</strong> YOU</div>
+              <div><strong>date :</strong> {{ page.date | date: "%d/%m/%Y" }}</div>
+              <div><strong>subject :</strong> {{ page.subject | default: page.title }}</div>
+              <div><strong>cc :</strong> {{ page.cc | default: "BLHLS" }}</div>
+            {% else %}
+              <div><strong>{{ page.title }}</strong></div>
+              <div style="opacity:.8; font-size: 12px;">contact / profile</div>
+            {% endif %}
           </div>
-        {% endif %}
 
-        <div class="paper">
-          {{ content }}
+          <a class="closebtn" href="{{ site.baseurl }}{{ page.close_to | default: '/mail/blank/' }}">✕</a>
         </div>
+      {% endif %}
+
+      <div class="email-body">
+        {{ content }}
       </div>
     </main>
   </div>
+
+  <script>
+    (function(){
+      const toggles = document.querySelectorAll('[data-folders-toggle]');
+      toggles.forEach(btn => btn.addEventListener('click', () => {
+        document.body.classList.toggle('folders-mini');
+      }));
+    })();
+  </script>
 </body>
 </html>
