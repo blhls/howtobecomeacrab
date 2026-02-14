@@ -195,8 +195,18 @@
   </style>
 
   <script>
-    function toggleFolders(){ document.body.classList.toggle("folders-mini"); }
-    function closePane(){ history.back(); }
+    function toggleFolders(){
+      document.body.classList.toggle("folders-mini");
+    }
+    function closePane(){
+      history.back();
+    }
+    // Wire up any toggle buttons present in the folders include
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll("[data-folders-toggle]").forEach(function(el){
+        el.addEventListener("click", toggleFolders);
+      });
+    });
   </script>
 </head>
 
@@ -228,7 +238,7 @@
     </aside>
 
     <aside class="list">
-      {% include messages.html %}
+      {% include message_list.html %}
     </aside>
 
     <main class="view">
