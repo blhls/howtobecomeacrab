@@ -38,10 +38,15 @@
     body{
       font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
       color: var(--crab-ui);
+
+      /* colour blocks (no gradients / no radial glows) */
       background:
-        radial-gradient(1200px 800px at 35% 20%, rgba(90,167,183,.16), transparent 62%),
-        radial-gradient(900px 700px at 75% 60%, rgba(240,162,95,.10), transparent 68%),
-        linear-gradient(180deg, var(--burgundy-0), #12030b);
+        linear-gradient(180deg, rgba(90,167,183,.10) 0 180px, transparent 180px),
+        linear-gradient(90deg,
+          var(--burgundy-0) 0 32%,
+          var(--burgundy-1) 32% 70%,
+          #12030b 70% 100%
+        );
     }
 
     body.folders-mini { --folders-w: var(--folders-w-mini); }
@@ -118,290 +123,319 @@
       padding: 6px 8px;
       border: 1px solid var(--border);
       background: rgba(0,0,0,.20);
+      color: var(--crab-ui);
+      border-radius: 10px;
       cursor: pointer;
       user-select: none;
+      box-shadow: 0 8px 18px var(--shadow);
       margin-bottom: 10px;
-      border-radius: 6px;
-      color: var(--crab-ui);
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
     }
 
-    .group{ margin: 12px 0; }
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      margin: 8px 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0,0,0,.18);
+      box-shadow: 0 10px 24px var(--shadow);
+    }
 
-    .group-title{
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: 1.1px;
-      opacity: .92;
-      margin: 8px 0 6px;
+    .brand .word{
+      font-weight: 900;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--crab-ui);
+      text-shadow: 0 0 12px rgba(90,167,183,.16);
+    }
+
+    .brand .close{
+      margin-left: auto;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      color: var(--crab-ui);
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 900;
+      box-shadow: 0 8px 18px var(--shadow);
+    }
+
+    .section{
+      margin-top: 14px;
       color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
     }
 
-    .folder-item{
+    .folder-list{
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .folder-list a{
       display: block;
       text-decoration: none;
-      color: inherit;
-      padding: 6px 8px;
-      border-radius: 8px;
+      color: var(--crab-ui);
+      padding: 8px 10px;
+      margin: 6px 0;
+      border-radius: 10px;
       border: 1px solid transparent;
+      background: rgba(0,0,0,.10);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
     }
 
-    .folder-item:hover{
-      background: rgba(240,162,95,.08);
-      border-color: rgba(90,167,183,.22);
+    .folder-list a:hover{
+      border-color: var(--border);
+      background: rgba(0,0,0,.18);
+      box-shadow: 0 10px 24px var(--shadow);
     }
 
-    .folder-item .folder-text{
-      text-shadow: 0 1px 0 rgba(0,0,0,.65);
+    body.folders-mini .brand .word,
+    body.folders-mini .section,
+    body.folders-mini .folder-list a span{
+      display: none;
     }
 
-    .folder-item.active{
-  background: rgba(240,162,95,.16);
-  border-color: rgba(240,162,95,.55);
-  box-shadow: 0 0 0 2px rgba(240,162,95,.10) inset;
-}
-
-
-    /* mini collapsed */
-    .mini{ display: none; gap: 10px; align-items: center; }
-
-    .mini .hamburger{
-      display: inline-block;
-      padding: 6px 8px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.20);
-      cursor: pointer;
-      user-select: none;
-      width: fit-content;
-      border-radius: 6px;
-      color: var(--crab-ui);
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
+    body.folders-mini .folder-list a{
+      padding: 10px 0;
+      text-align: center;
     }
 
-    .mini .letters{
-      font-weight: 900;
-      letter-spacing: .6px;
-      line-height: 1.05;
-      opacity: .95;
-      color: var(--crab-ui);
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-    }
-    .mini .letters span{ display: block; }
-
-    body.folders-mini .toggle,
-    body.folders-mini .group{ display: none; }
-    body.folders-mini .mini{ display: grid; }
-    body.folders-mini .folders{ padding: 12px 8px; }
-
-    /* ===== Middle list ===== */
+    /* ===== Message list ===== */
     .list{
-  background:
-    radial-gradient(900px 700px at 40% 20%, rgba(90,167,183,.20), transparent 60%),
-    linear-gradient(180deg, rgba(90,167,183,.22), rgba(26,6,16,.06)),
-    linear-gradient(180deg, #2a0a19, #16040d);
-  border-right: 1px solid var(--border);
-  overflow: auto;
-  min-height: 0;
-}
-
-
-    .list-header{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),
+                  linear-gradient(180deg, #2c0a1b, #12030b);
+      border-right: 1px solid var(--border);
       padding: 12px;
-      border-bottom: 1px solid var(--border);
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.36)),
-        linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      color: var(--crab-ui);
-      text-shadow: 0 1px 0 rgba(0,0,0,.85);
-    }
-
-    .msg{
-      display: grid;
-      gap: 2px;
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border2);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .msg:hover{ background: rgba(90,167,183,.10); }
-
-    .msg .meta{ font-size: 12px; color: var(--muted2); }
-    .msg .subj{ font-weight: 800; color: var(--crab-ui); }
-
-    .msg.active{
-      background: rgba(90,167,183,.16);
-      outline: 1px solid rgba(90,167,183,.35);
-      box-shadow: 0 0 0 2px rgba(240,162,95,.10) inset;
-    }
-
-    /* ===== Right reading pane ===== */
-    .view{
-      background:
-        radial-gradient(900px 700px at 30% 10%, rgba(90,167,183,.14), transparent 60%),
-        radial-gradient(900px 700px at 72% 40%, rgba(240,162,95,.10), transparent 65%),
-        linear-gradient(180deg, #1a0610, #12030b);
+      box-sizing: border-box;
       overflow: auto;
       min-height: 0;
     }
 
-    /* header stays burgundy + crab UI text */
-    .email-header{
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      border-bottom: 1px solid var(--border);
-      padding: 12px 16px;
-      font-size: 13px;
-     background:
-  linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
-  linear-gradient(90deg, rgba(90,167,183,.35), rgba(90,167,183,.10)),
-  linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
-      color: var(--crab-ui);
-    }
-
-    .hdr-left{ display: grid; gap: 2px; }
-
-    .email-header strong{
-      color: var(--crab-ui);
+    .list h2{
+      margin: 2px 0 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
       font-weight: 900;
     }
 
-    .closebtn{
+    .msg{
+      display: grid;
+      gap: 4px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: rgba(0,0,0,.14);
       text-decoration: none;
       color: var(--crab-ui);
+      margin: 10px 0;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+
+    .msg:hover{
+      border-color: var(--border);
+      background: rgba(0,0,0,.18);
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+
+    .msg .t{
       font-weight: 900;
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
+      letter-spacing: .6px;
+    }
+
+    .msg .m{
+      color: var(--muted2);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    /* ===== Viewer ===== */
+    .view{
+      padding: 14px;
+      box-sizing: border-box;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    .panel{
+      background: rgba(0,0,0,.16);
       border: 1px solid var(--border);
-      background: rgba(0,0,0,.20);
-      border-radius: 6px;
-      flex: 0 0 auto;
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-      box-shadow: 0 1px 0 rgba(255,255,255,.05) inset;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 14px 40px var(--shadow);
+      position: relative;
     }
 
-    .closebtn:hover{
-      border-color: rgba(90,167,183,.55);
-      box-shadow: 0 0 0 2px rgba(90,167,183,.18);
+    .meta{
+      display: grid;
+      gap: 6px;
+      padding: 10px 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(0,0,0,.16);
+      margin-bottom: 12px;
     }
 
-    /* EMAIL BODY: crab-paper background + burgundy text */
-    .email-body{
-      padding: 18px 18px 48px;
-      max-width: 920px;
-      line-height: 1.55;
-      font-size: 16px;
+    .meta .row{
+      display: flex;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
 
+    .meta .row b{
+      color: var(--crab-ui);
+      letter-spacing: 1.4px;
+      min-width: 64px;
+      display: inline-block;
+    }
+
+    .paper{
       background: var(--crab-paper);
       color: var(--ink);
-      margin: 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(43,7,25,.22);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      border-radius: 16px;
+      padding: 18px 18px 22px;
+      border: 2px solid rgba(26,6,16,.25);
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
     }
 
-    .email-body h1, .email-body h2, .email-body h3{
+    .paper h1, .paper h2, .paper h3{
+      margin-top: 0;
       color: var(--ink);
-      text-shadow: none;
     }
 
-    .email-body a{ color: var(--duck-2); }
-    .email-body a:hover{ color: var(--duck); }
+    .paper a{ color: #1d5c69; }
+    .paper a:hover{ color: #0f3f48; }
 
-    /* SENT special box */
-    .sentbox{
-      margin-top: 6px;
-      padding: 12px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 190, 210, .35);
-      background:
-        radial-gradient(700px 220px at 30% 20%, rgba(255, 190, 210, .22), transparent 60%),
-        linear-gradient(180deg, rgba(255, 190, 210, .16), rgba(90,167,183,.10));
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      font-family: "Georgia", "Times New Roman", serif;
-      letter-spacing: .3px;
-      font-weight: 700;
+    .close-x{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,.18);
+      border: 1px solid var(--border);
       color: var(--crab-ui);
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 10px 24px var(--shadow);
     }
 
-    .sentbox:hover{
-      border-color: rgba(90,167,183,.60);
-      box-shadow: 0 0 0 2px rgba(90,167,183,.18), 0 14px 40px rgba(0,0,0,.45);
+    .close-x:hover{
+      filter: brightness(1.06);
+      transform: translateY(-1px);
     }
 
-    .sentbox .folder-text{ text-shadow: none; font-size: 14px; }
-
-    
+    /* ===== responsive ===== */
+    @media (max-width: 980px){
+      :root{ --list-w: 320px; }
+    }
+    @media (max-width: 860px){
+      .app{ grid-template-columns: var(--folders-w) 1fr; }
+      .list{ display: none; }
+    }
+    @media (max-width: 620px){
+      body{ font-size: 14px; }
+      :root{ --folders-w: var(--folders-w-mini); }
+      .brand .word, .section, .folder-list a span{ display: none; }
+    }
   </style>
+
+  <script>
+    function toggleFolders(){
+      document.body.classList.toggle("folders-mini");
+    }
+    function closePane(){
+      history.back();
+    }
+  </script>
 </head>
 
 <body>
   <div class="topbar">
     <div class="marquee" aria-hidden="true">
       <div class="track">
-     <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span> <span class="chunk"> HOWTOBECOMEACRAB.COM - CARCINISE NOW - </span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+      </div>
+      <div class="track" aria-hidden="true">
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
       </div>
     </div>
   </div>
 
   <div class="app">
-    {% include folders.html %}
+    <aside class="folders">
+      {% include folders.html %}
+    </aside>
 
     <aside class="list">
       {% include message_list.html %}
     </aside>
 
     <main class="view">
-      {% if page.show_close != false %}
-        <div class="email-header">
-          <div class="hdr-left">
-            {% if page.email_view %}
-              <div><strong>from :</strong> {{ page.from | default: "UNKNOWN" }}</div>
-              <div><strong>to :</strong> YOU</div>
-              <div><strong>date :</strong> {{ page.date | date: "%d/%m/%Y" }}</div>
-              <div><strong>subject :</strong> {{ page.subject | default: page.title }}</div>
-              <div><strong>cc :</strong> {{ page.cc | default: "BLHLS" }}</div>
-            {% else %}
-              <div><strong>{{ page.title }}</strong></div>
-              <div style="color: var(--muted2); font-size: 12px;">contact / profile</div>
-            {% endif %}
+      <div class="panel">
+        {% if page.show_close != false %}
+          <a class="close-x" href="javascript:closePane()" aria-label="Close">✕</a>
+        {% endif %}
+
+        {% if page.email_view %}
+          <div class="meta">
+            <div class="row"><b>from :</b> <span>{{ page.from | default: "UNKNOWN" }}</span></div>
+            <div class="row"><b>to :</b> <span>YOU</span></div>
+            <div class="row"><b>date :</b> <span>{{ page.date | date: "%d/%m/%Y" }}</span></div>
+            <div class="row"><b>subject :</b> <span>{{ page.subject | default: page.title }}</span></div>
+            <div class="row"><b>cc :</b> <span>{{ page.cc | default: "BLHLS" }}</span></div>
           </div>
+        {% else %}
+          <div class="meta">
+            <div class="row"><b>{{ page.title }}</b></div>
+            <div class="row"><span>contact / profile</span></div>
+          </div>
+        {% endif %}
 
-          <a class="closebtn" href="{{ site.baseurl }}{{ page.close_to | default: '/mail/blank/' }}">✕</a>
+        <div class="paper">
+          {{ content }}
         </div>
-      {% endif %}
-
-      <div class="email-body">
-        {{ content }}
       </div>
     </main>
   </div>
-
-  <script>
-    (function(){
-      const toggles = document.querySelectorAll('[data-folders-toggle]');
-      toggles.forEach(btn => btn.addEventListener('click', () => {
-        document.body.classList.toggle('folders-mini');
-      }));
-    })();
-  </script>
 </body>
 </html>
