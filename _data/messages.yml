@@ -23,13 +23,8 @@ junk:
     url: /mail/junk/bouillabaisse/
 
 account:
-  - subject: _profile
+  - subject: profile
     from: system
     to: YOU
     date: 13/02/2026
     url: /mail/account/
-  - subject: _moult (LOG OUT)
-    from: system
-    to: YOU
-    date: 13/02/2026
-    url: /
