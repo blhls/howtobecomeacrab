@@ -1,14 +1,14 @@
 ---
 layout: mail
 permalink: /mail/account/
-title: _profile
+title: profile
 section: all
 mailbox: account
 list_title: YOUR ACCOUNT
 close_to: /mail/blank/
 ---
 
-# _profile
+# profile
 
 user : you
 
