@@ -3,439 +3,171 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <title>HOWTOBECOMEACRAB.COM</title>
 
   <style>
     :root{
-      --topbar-h: 34px;
-      --folders-w: 260px;
-      --folders-w-mini: 64px;
-      --list-w: 360px;
+      --duck: #5aa7b7;
+      --duck2:#3f8f9f;
 
-      /* CORE PALETTE */
-      --burgundy-0: #1a0610;   /* deep velvet */
-      --burgundy-1: #240816;   /* panels */
-      --burgundy-2: #2f0a1d;   /* panel chrome */
-      --crab-ui:    #f0a25f;   /* light crab-orange (UI text / borders) */
-      --crab-paper: #f2b275;   /* email background */
-      --duck:       #5aa7b7;   /* accent */
-      --duck-2:     #3f8f9f;
-
-      --ink:        #2b0719;   /* burgundy text on crab paper */
-      --muted:      rgba(240,162,95,.78);
-      --muted2:     rgba(240,162,95,.62);
-
-      --border:     rgba(240,162,95,.22);
-      --border2:    rgba(240,162,95,.14);
-      --shadow:     rgba(0,0,0,.55);
-
-      --link:       #5aa7b7;   /* duck blue for links */
-      --linkHover:  #7fc7d4;
+      --crab: #f0a25f;         /* fill */
+      --crab-dark: #d98947;    /* stroke */
+      --burg: #1a0610;
+      --shadow: rgba(0,0,0,.45);
     }
 
     html, body { height: 100%; margin: 0; }
 
     body{
-      font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-      color: var(--crab-ui);
-
-      /* colour blocks (no gradients / no radial glows) */
       background:
-        linear-gradient(180deg, rgba(90,167,183,.10) 0 180px, transparent 180px),
+        linear-gradient(180deg, rgba(255,255,255,.08) 0 220px, transparent 220px),
         linear-gradient(90deg,
-          var(--burgundy-0) 0 32%,
-          var(--burgundy-1) 32% 70%,
-          #12030b 70% 100%
+          var(--duck2) 0 34%,
+          var(--duck) 34% 66%,
+          var(--duck2) 66% 100%
         );
+      font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+      color: var(--burg);
     }
 
-    body.folders-mini { --folders-w: var(--folders-w-mini); }
-
-    .app{
-      height: calc(100vh - var(--topbar-h));
-      display: grid;
-      grid-template-columns: var(--folders-w) var(--list-w) 1fr;
-      min-height: 0;
-    }
-
-    /* ===== Top banner ===== */
-    .topbar{
-      position: sticky;
-      top: 0;
-      height: var(--topbar-h);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      z-index: 50;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
-        linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
-      box-shadow: 0 2px 0 rgba(255,255,255,.05) inset;
-    }
-
-    .marquee{
+    .screen{
       height: 100%;
-      overflow: hidden;
       display: flex;
-      align-items: center;
-    }
-
-    .track{
-      display: inline-flex;
-      align-items: center;
-      width: max-content;
-      animation: marquee 10s linear infinite;
-      will-change: transform;
-    }
-
-    .chunk{
-      display: inline-block;
-      white-space: nowrap;
-
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: 1.7px;
-      text-transform: uppercase;
-
-      color: var(--crab-ui);
-      text-shadow:
-        0 1px 0 rgba(0,0,0,.85),
-        0 0 10px rgba(90,167,183,.18);
-    }
-
-    @keyframes marquee{
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ===== Left folders ===== */
-    .folders{
-      background: linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
-      border-right: 1px solid var(--border);
-      padding: 12px;
+      flex-direction: column;
+      padding: 28px;
       box-sizing: border-box;
-      overflow: auto;
-      box-shadow: -1px 0 0 rgba(255,255,255,.04) inset;
     }
 
-    .toggle{
+    .badge{
       display: inline-block;
-      padding: 6px 8px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.20);
-      color: var(--crab-ui);
-      border-radius: 10px;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 8px 18px var(--shadow);
-      margin-bottom: 10px;
-    }
-
-    .brand{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      margin: 8px 0 12px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(0,0,0,.18);
-      box-shadow: 0 10px 24px var(--shadow);
-    }
-
-    .brand .word{
+      border: 2px solid rgba(26,6,16,.35);
+      background: rgba(255,255,255,.10);
+      padding: 10px 14px;
       font-weight: 900;
-      letter-spacing: 6px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--crab-ui);
-      text-shadow: 0 0 12px rgba(90,167,183,.16);
+      color: var(--burg);
+      box-shadow: 0 6px 20px var(--shadow);
+      width: fit-content;
     }
 
-    .brand .close{
-      margin-left: auto;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      color: var(--crab-ui);
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
+    .title{
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.02;
+      margin-top: 18px;
+
+      color: var(--crab);
+      -webkit-text-stroke: 4px var(--crab-dark);
+      paint-order: stroke fill;
+
+      text-shadow:
+        0 10px 18px rgba(26,6,16,.22),
+        2px 0 0 var(--crab-dark),
+       -2px 0 0 var(--crab-dark),
+        0 2px 0 var(--crab-dark),
+        0 -2px 0 var(--crab-dark);
+    }
+
+    .sub{
+      margin-top: 10px;
+      font-size: 14px;
+      letter-spacing: .8px;
+      text-transform: lowercase;
+      color: rgba(26,6,16,.82);
+      max-width: 680px;
+    }
+
+    .center-area{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .gifbox{
+      width: 260px;
+      height: 260px;
+      border-radius: 14px;
+      border: 2px dashed rgba(26,6,16,.45);
+      background: rgba(255,255,255,.10);
       display: grid;
       place-items: center;
-      cursor: pointer;
-      user-select: none;
-      font-weight: 900;
-      box-shadow: 0 8px 18px var(--shadow);
+      box-shadow: 0 10px 30px var(--shadow);
+      overflow: hidden;
     }
 
-    .section{
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .folder-list{
-      margin: 8px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .folder-list a{
+    .gifbox img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+    }
+
+    .cta{
       text-decoration: none;
-      color: var(--crab-ui);
-      padding: 8px 10px;
-      margin: 6px 0;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: rgba(0,0,0,.10);
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-    }
-
-    .folder-list a:hover{
-      border-color: var(--border);
-      background: rgba(0,0,0,.18);
-      box-shadow: 0 10px 24px var(--shadow);
-    }
-
-    body.folders-mini .brand .word,
-    body.folders-mini .section,
-    body.folders-mini .folder-list a span{
-      display: none;
-    }
-
-    body.folders-mini .folder-list a{
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    /* ===== Message list ===== */
-    .list{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),
-                  linear-gradient(180deg, #2c0a1b, #12030b);
-      border-right: 1px solid var(--border);
-      padding: 12px;
-      box-sizing: border-box;
-      overflow: auto;
-      min-height: 0;
-    }
-
-    .list h2{
-      margin: 2px 0 10px;
-      font-size: 12px;
+      background: var(--crab);
+      color: var(--burg);
+      border: 2px solid var(--crab-dark);
+      padding: 12px 18px;
+      font-weight: 900;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--muted);
-      font-weight: 900;
+      border-radius: 10px;
+      box-shadow: 0 10px 26px var(--shadow);
     }
 
-    .msg{
-      display: grid;
-      gap: 4px;
-      padding: 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      background: rgba(0,0,0,.14);
-      text-decoration: none;
-      color: var(--crab-ui);
-      margin: 10px 0;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
+    .cta:hover{ filter: brightness(1.04); transform: translateY(-1px); }
+
+    .loginline{
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
+      font-size: 13px;
+      opacity: .85;
+      color: rgba(26,6,16,.85);
     }
 
-    .msg:hover{
-      border-color: var(--border);
-      background: rgba(0,0,0,.18);
-      box-shadow: 0 12px 30px var(--shadow);
-    }
-
-    .msg .t{
-      font-weight: 900;
-      letter-spacing: .6px;
-    }
-
-    .msg .m{
-      color: var(--muted2);
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    /* ===== Viewer ===== */
-    .view{
-      padding: 14px;
-      box-sizing: border-box;
-      overflow: auto;
-      min-height: 0;
-    }
-
-    .panel{
-      background: rgba(0,0,0,.16);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 14px 40px var(--shadow);
-      position: relative;
-    }
-
-    .meta{
-      display: grid;
-      gap: 6px;
-      padding: 10px 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(0,0,0,.16);
-      margin-bottom: 12px;
-    }
-
-    .meta .row{
-      display: flex;
-      gap: 10px;
+    .corner{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
       font-size: 12px;
       letter-spacing: 1px;
-      color: var(--muted);
       text-transform: uppercase;
-    }
 
-    .meta .row b{
-      color: var(--crab-ui);
-      letter-spacing: 1.4px;
-      min-width: 64px;
-      display: inline-block;
-    }
-
-    .paper{
-      background: var(--crab-paper);
-      color: var(--ink);
-      border-radius: 16px;
-      padding: 18px 18px 22px;
-      border: 2px solid rgba(26,6,16,.25);
-      box-shadow: 0 18px 50px rgba(0,0,0,.40);
-    }
-
-    .paper h1, .paper h2, .paper h3{
-      margin-top: 0;
-      color: var(--ink);
-    }
-
-    .paper a{ color: #1d5c69; }
-    .paper a:hover{ color: #0f3f48; }
-
-    .close-x{
-      position: absolute;
-      top: 12px;
-      right: 12px;
+      background: rgba(240,162,95,.88);
+      color: var(--burg);
+      border: 2px solid rgba(26,6,16,.35);
+      padding: 10px 12px;
       border-radius: 10px;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      background: rgba(0,0,0,.18);
-      border: 1px solid var(--border);
-      color: var(--crab-ui);
-      text-decoration: none;
-      font-weight: 900;
-      box-shadow: 0 10px 24px var(--shadow);
-    }
-
-    .close-x:hover{
-      filter: brightness(1.06);
-      transform: translateY(-1px);
-    }
-
-    /* ===== responsive ===== */
-    @media (max-width: 980px){
-      :root{ --list-w: 320px; }
-    }
-    @media (max-width: 860px){
-      .app{ grid-template-columns: var(--folders-w) 1fr; }
-      .list{ display: none; }
-    }
-    @media (max-width: 620px){
-      body{ font-size: 14px; }
-      :root{ --folders-w: var(--folders-w-mini); }
-      .brand .word, .section, .folder-list a span{ display: none; }
+      box-shadow: 0 10px 30px var(--shadow);
+      user-select: none;
     }
   </style>
-
-  <script>
-    function toggleFolders(){
-      document.body.classList.toggle("folders-mini");
-    }
-    function closePane(){
-      history.back();
-    }
-  </script>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="marquee" aria-hidden="true">
-      <div class="track">
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+  <div class="screen">
+    <div class="badge">[/!\ YOU’VE GOT 99+ CRABS /!\]</div>
+
+    <div class="title">LOGIN :</div>
+    <div class="title">HOWTOBECOMEACRAB.COM</div>
+    <div class="sub">demiurgic messaging systems and chitin delivery</div>
+
+    <div class="center-area">
+      <div class="gifbox">
+        <img src="./assets/session.gif" alt="session gif"
+             onerror="this.remove(); this.parentElement.textContent='GIF SLOT';" />
       </div>
-      <div class="track" aria-hidden="true">
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
-      </div>
+
+      <a class="cta" href="./mail/drafts/crabs/">CHECK MY CRABS</a>
+
+      <div class="loginline">→ click to access mailbox</div>
     </div>
-  </div>
 
-  <div class="app">
-    <aside class="folders">
-      {% include folders.html %}
-    </aside>
-
-    <aside class="list">
-      {% include message_list.html %}
-    </aside>
-
-    <main class="view">
-      <div class="panel">
-        {% if page.show_close != false %}
-          <a class="close-x" href="javascript:closePane()" aria-label="Close">✕</a>
-        {% endif %}
-
-        {% if page.email_view %}
-          <div class="meta">
-            <div class="row"><b>from :</b> <span>{{ page.from | default: "UNKNOWN" }}</span></div>
-            <div class="row"><b>to :</b> <span>YOU</span></div>
-            <div class="row"><b>date :</b> <span>{{ page.date | date: "%d/%m/%Y" }}</span></div>
-            <div class="row"><b>subject :</b> <span>{{ page.subject | default: page.title }}</span></div>
-            <div class="row"><b>cc :</b> <span>{{ page.cc | default: "BLHLS" }}</span></div>
-          </div>
-        {% else %}
-          <div class="meta">
-            <div class="row"><b>{{ page.title }}</b></div>
-            <div class="row"><span>contact / profile</span></div>
-          </div>
-        {% endif %}
-
-        <div class="paper">
-          {{ content }}
-        </div>
-      </div>
-    </main>
+    <div class="corner">CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES</div>
   </div>
 </body>
 </html>
