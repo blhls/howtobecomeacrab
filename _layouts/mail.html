@@ -3,171 +3,255 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HOWTOBECOMEACRAB.COM</title>
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
 
   <style>
     :root{
-      --duck: #5aa7b7;
-      --duck2:#3f8f9f;
+      --topbar-h: 34px;
+      --folders-w: 260px;
+      --folders-w-mini: 64px;
+      --list-w: 360px;
 
-      --crab: #f0a25f;         /* fill */
-      --crab-dark: #d98947;    /* stroke */
-      --burg: #1a0610;
-      --shadow: rgba(0,0,0,.45);
+      --burgundy-0: #1a0610;
+      --burgundy-1: #240816;
+      --burgundy-2: #2f0a1d;
+
+      --crab-ui:    #f0a25f;
+      --crab-paper: #f2b275;
+      --ink:        #2b0719;
+
+      --muted:      rgba(240,162,95,.78);
+      --muted2:     rgba(240,162,95,.62);
+      --border:     rgba(240,162,95,.22);
+      --border2:    rgba(240,162,95,.14);
+      --shadow:     rgba(0,0,0,.55);
     }
 
     html, body { height: 100%; margin: 0; }
 
     body{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08) 0 220px, transparent 220px),
-        linear-gradient(90deg,
-          var(--duck2) 0 34%,
-          var(--duck) 34% 66%,
-          var(--duck2) 66% 100%
-        );
       font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-      color: var(--burg);
+      color: var(--crab-ui);
+
+      /* hard colour blocks */
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06) 0 180px, transparent 180px),
+        linear-gradient(90deg,
+          var(--burgundy-0) 0 32%,
+          var(--burgundy-1) 32% 70%,
+          #12030b 70% 100%
+        );
     }
 
-    .screen{
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 28px;
-      box-sizing: border-box;
-    }
+    body.folders-mini { --folders-w: var(--folders-w-mini); }
 
-    .badge{
-      display: inline-block;
-      border: 2px solid rgba(26,6,16,.35);
-      background: rgba(255,255,255,.10);
-      padding: 10px 14px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--burg);
-      box-shadow: 0 6px 20px var(--shadow);
-      width: fit-content;
-    }
-
-    .title{
-      font-weight: 900;
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1.02;
-      margin-top: 18px;
-
-      color: var(--crab);
-      -webkit-text-stroke: 4px var(--crab-dark);
-      paint-order: stroke fill;
-
-      text-shadow:
-        0 10px 18px rgba(26,6,16,.22),
-        2px 0 0 var(--crab-dark),
-       -2px 0 0 var(--crab-dark),
-        0 2px 0 var(--crab-dark),
-        0 -2px 0 var(--crab-dark);
-    }
-
-    .sub{
-      margin-top: 10px;
-      font-size: 14px;
-      letter-spacing: .8px;
-      text-transform: lowercase;
-      color: rgba(26,6,16,.82);
-      max-width: 680px;
-    }
-
-    .center-area{
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .gifbox{
-      width: 260px;
-      height: 260px;
-      border-radius: 14px;
-      border: 2px dashed rgba(26,6,16,.45);
-      background: rgba(255,255,255,.10);
+    .app{
+      height: calc(100vh - var(--topbar-h));
       display: grid;
-      place-items: center;
-      box-shadow: 0 10px 30px var(--shadow);
+      grid-template-columns: var(--folders-w) var(--list-w) 1fr;
+      min-height: 0;
+    }
+
+    .topbar{
+      position: sticky;
+      top: 0;
+      height: var(--topbar-h);
+      border-bottom: 1px solid var(--border);
       overflow: hidden;
+      z-index: 50;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.40)),
+        linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
+      box-shadow: 0 2px 0 rgba(255,255,255,.05) inset;
     }
 
-    .gifbox img{
-      width: 100%;
+    .marquee{
       height: 100%;
-      object-fit: cover;
-      display: block;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
     }
 
-    .cta{
-      text-decoration: none;
-      background: var(--crab);
-      color: var(--burg);
-      border: 2px solid var(--crab-dark);
-      padding: 12px 18px;
+    .track{
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      animation: marquee 10s linear infinite;
+      will-change: transform;
+    }
+
+    .chunk{
+      display: inline-block;
+      white-space: nowrap;
+      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
       font-weight: 900;
-      letter-spacing: 1px;
+      font-size: 12px;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
-      border-radius: 10px;
-      box-shadow: 0 10px 26px var(--shadow);
+      color: var(--crab-ui);
+      text-shadow: 0 1px 0 rgba(0,0,0,.85);
     }
 
-    .cta:hover{ filter: brightness(1.04); transform: translateY(-1px); }
-
-    .loginline{
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
-      font-size: 13px;
-      opacity: .85;
-      color: rgba(26,6,16,.85);
+    @keyframes marquee{
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
-    .corner{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      font-family: "Lucida Console", Monaco, "Courier New", Courier, monospace;
+    .folders{
+      background: linear-gradient(180deg, var(--burgundy-2), var(--burgundy-1));
+      border-right: 1px solid var(--border);
+      padding: 12px;
+      box-sizing: border-box;
+      overflow: auto;
+      box-shadow: -1px 0 0 rgba(255,255,255,.04) inset;
+    }
+
+    .list{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),
+        linear-gradient(180deg, #2c0a1b, #12030b);
+      border-right: 1px solid var(--border);
+      padding: 12px;
+      box-sizing: border-box;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    .view{
+      padding: 14px;
+      box-sizing: border-box;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    .panel{
+      background: rgba(0,0,0,.16);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 14px 40px var(--shadow);
+      position: relative;
+    }
+
+    .meta{
+      display: grid;
+      gap: 6px;
+      padding: 10px 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(0,0,0,.16);
+      margin-bottom: 12px;
+    }
+
+    .meta .row{
+      display: flex;
+      gap: 10px;
       font-size: 12px;
       letter-spacing: 1px;
+      color: var(--muted);
       text-transform: uppercase;
+    }
 
-      background: rgba(240,162,95,.88);
-      color: var(--burg);
-      border: 2px solid rgba(26,6,16,.35);
-      padding: 10px 12px;
+    .meta .row b{
+      color: var(--crab-ui);
+      letter-spacing: 1.4px;
+      min-width: 64px;
+      display: inline-block;
+    }
+
+    .paper{
+      background: var(--crab-paper);
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 18px 18px 22px;
+      border: 2px solid rgba(26,6,16,.25);
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
+    }
+
+    .close-x{
+      position: absolute;
+      top: 12px;
+      right: 12px;
       border-radius: 10px;
-      box-shadow: 0 10px 30px var(--shadow);
-      user-select: none;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,.18);
+      border: 1px solid var(--border);
+      color: var(--crab-ui);
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 10px 24px var(--shadow);
+    }
+
+    @media (max-width: 860px){
+      .app{ grid-template-columns: var(--folders-w) 1fr; }
+      .list{ display: none; }
+    }
+    @media (max-width: 620px){
+      :root{ --folders-w: var(--folders-w-mini); }
     }
   </style>
+
+  <script>
+    function toggleFolders(){ document.body.classList.toggle("folders-mini"); }
+    function closePane(){ history.back(); }
+  </script>
 </head>
 
 <body>
-  <div class="screen">
-    <div class="badge">[/!\ YOU’VE GOT 99+ CRABS /!\]</div>
-
-    <div class="title">LOGIN :</div>
-    <div class="title">HOWTOBECOMEACRAB.COM</div>
-    <div class="sub">demiurgic messaging systems and chitin delivery</div>
-
-    <div class="center-area">
-      <div class="gifbox">
-        <img src="./assets/session.gif" alt="session gif"
-             onerror="this.remove(); this.parentElement.textContent='GIF SLOT';" />
+  <div class="topbar">
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
       </div>
-
-      <a class="cta" href="./mail/drafts/crabs/">CHECK MY CRABS</a>
-
-      <div class="loginline">→ click to access mailbox</div>
+      <div class="track" aria-hidden="true">
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+        <span class="chunk">HOWTOBECOMEACRAB.COM - CARCINISE NOW -&nbsp;</span>
+      </div>
     </div>
+  </div>
 
-    <div class="corner">CRABS : CARCINISATION RELATED ALERTS AND BERYLIST SEARCHES</div>
+  <div class="app">
+    <aside class="folders">
+      {% include folders.html %}
+    </aside>
+
+    <aside class="list">
+      {% include messages.html %}
+    </aside>
+
+    <main class="view">
+      <div class="panel">
+        {% if page.show_close != false %}
+          <a class="close-x" href="javascript:closePane()" aria-label="Close">✕</a>
+        {% endif %}
+
+        {% if page.email_view %}
+          <div class="meta">
+            <div class="row"><b>from :</b> <span>{{ page.from | default: "UNKNOWN" }}</span></div>
+            <div class="row"><b>to :</b> <span>YOU</span></div>
+            <div class="row"><b>date :</b> <span>{{ page.date | date: "%d/%m/%Y" }}</span></div>
+            <div class="row"><b>subject :</b> <span>{{ page.subject | default: page.title }}</span></div>
+            <div class="row"><b>cc :</b> <span>{{ page.cc | default: "BLHLS" }}</span></div>
+          </div>
+        {% endif %}
+
+        <div class="paper">
+          {{ content }}
+        </div>
+      </div>
+    </main>
   </div>
 </body>
 </html>
